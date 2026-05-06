@@ -56,7 +56,7 @@
             // lOGINToolStripMenuItem
             // 
             lOGINToolStripMenuItem.Name = "lOGINToolStripMenuItem";
-            lOGINToolStripMenuItem.Size = new Size(180, 22);
+            lOGINToolStripMenuItem.Size = new Size(117, 22);
             lOGINToolStripMenuItem.Text = "LOGIN";
             lOGINToolStripMenuItem.Click += lOGINToolStripMenuItem_Click;
             // 
@@ -72,6 +72,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Times New Roman", 40F, FontStyle.Bold | FontStyle.Italic);
+            label3.ForeColor = Color.ForestGreen;
             label3.Location = new Point(177, 210);
             label3.Name = "label3";
             label3.Size = new Size(398, 61);
@@ -82,6 +83,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.DarkGray;
             ClientSize = new Size(800, 450);
             Controls.Add(label3);
             Controls.Add(menuStrip1);

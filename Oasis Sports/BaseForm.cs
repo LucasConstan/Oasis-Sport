@@ -19,18 +19,11 @@ namespace Oasis_Sports
 
             this.Font = new Font("Times New Roman", 14F, FontStyle.Regular);
             this.ForeColor = Color.Black;
-            this.BackColor = Color.Khaki;
+            this.BackColor = Color.DarkGray;
             this.StartPosition = FormStartPosition.CenterScreen;
-       
-      
-
             this.FormBorderStyle = FormBorderStyle.None; 
-            this.Padding = new Padding(2);
-
-       
+            this.Padding = new Padding(2);  
         }
-
-
 
         private void BaseForm_Load(object sender, EventArgs e)
         {

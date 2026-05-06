@@ -53,16 +53,20 @@
             // 
             // button1
             // 
+            button1.BackColor = Color.ForestGreen;
+            button1.ForeColor = Color.White;
             button1.Location = new Point(229, 225);
             button1.Name = "button1";
             button1.Size = new Size(149, 35);
             button1.TabIndex = 2;
             button1.Text = "INICIAR SESION";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.ForeColor = Color.ForestGreen;
             label1.Location = new Point(132, 126);
             label1.Name = "label1";
             label1.Size = new Size(62, 15);
@@ -72,6 +76,7 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.ForeColor = Color.ForestGreen;
             label2.Location = new Point(106, 171);
             label2.Name = "label2";
             label2.Size = new Size(88, 15);
@@ -81,28 +86,33 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
             label3.Font = new Font("Times New Roman", 30F, FontStyle.Bold | FontStyle.Italic);
+            label3.ForeColor = Color.ForestGreen;
             label3.Location = new Point(162, 32);
             label3.Name = "label3";
             label3.Size = new Size(294, 46);
             label3.TabIndex = 5;
             label3.Text = "OASIS SPORTS";
+            label3.TextAlign = ContentAlignment.TopCenter;
             // 
             // button2
             // 
+            button2.BackColor = Color.ForestGreen;
+            button2.ForeColor = Color.White;
             button2.Location = new Point(229, 266);
             button2.Name = "button2";
             button2.Size = new Size(149, 35);
             button2.TabIndex = 6;
             button2.Text = "VOLVER";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // FrmLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Khaki;
+            BackColor = Color.DarkGray;
             ClientSize = new Size(630, 353);
             Controls.Add(button2);
             Controls.Add(label3);
@@ -114,6 +124,7 @@
             Font = new Font("Times New Roman", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             Name = "FrmLogin";
             Text = "FrmLogin";
+            Load += FrmLogin_Load;
             ResumeLayout(false);
             PerformLayout();
         }
