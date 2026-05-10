@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Servicios;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,6 +28,19 @@ namespace Oasis_Sports
         private void sALIRToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void lOGOUTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(SessionManager.GetInstance().IsLogged())
+            {
+                SessionManager.GetInstance().Logout();
+                MessageBox.Show("Sesion cerrada con exito");
+            }
+            else
+            {
+                MessageBox.Show("No existe una sesion activa");
+            }
         }
     }
 }

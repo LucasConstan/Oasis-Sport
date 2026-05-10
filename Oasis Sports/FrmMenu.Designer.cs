@@ -33,6 +33,7 @@
             lOGINToolStripMenuItem = new ToolStripMenuItem();
             sALIRToolStripMenuItem = new ToolStripMenuItem();
             label3 = new Label();
+            lOGOUTToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -47,7 +48,7 @@
             // 
             // uSUARIOToolStripMenuItem
             // 
-            uSUARIOToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { lOGINToolStripMenuItem });
+            uSUARIOToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { lOGINToolStripMenuItem, lOGOUTToolStripMenuItem });
             uSUARIOToolStripMenuItem.Font = new Font("Times New Roman", 10F);
             uSUARIOToolStripMenuItem.Name = "uSUARIOToolStripMenuItem";
             uSUARIOToolStripMenuItem.Size = new Size(78, 20);
@@ -56,7 +57,7 @@
             // lOGINToolStripMenuItem
             // 
             lOGINToolStripMenuItem.Name = "lOGINToolStripMenuItem";
-            lOGINToolStripMenuItem.Size = new Size(117, 22);
+            lOGINToolStripMenuItem.Size = new Size(180, 22);
             lOGINToolStripMenuItem.Text = "LOGIN";
             lOGINToolStripMenuItem.Click += lOGINToolStripMenuItem_Click;
             // 
@@ -78,6 +79,13 @@
             label3.Size = new Size(398, 61);
             label3.TabIndex = 6;
             label3.Text = "OASIS SPORTS";
+            // 
+            // lOGOUTToolStripMenuItem
+            // 
+            lOGOUTToolStripMenuItem.Name = "lOGOUTToolStripMenuItem";
+            lOGOUTToolStripMenuItem.Size = new Size(180, 22);
+            lOGOUTToolStripMenuItem.Text = "LOGOUT";
+            lOGOUTToolStripMenuItem.Click += lOGOUTToolStripMenuItem_Click;
             // 
             // FrmMenu
             // 
@@ -103,5 +111,6 @@
         private ToolStripMenuItem lOGINToolStripMenuItem;
         private ToolStripMenuItem sALIRToolStripMenuItem;
         private Label label3;
+        private ToolStripMenuItem lOGOUTToolStripMenuItem;
     }
 }
