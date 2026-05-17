@@ -1,4 +1,7 @@
-BD: 
+BD:
+
+CREATE DATABASE OasisSports;
+
 CREATE TABLE usuarios (
     id_usuario INT IDENTITY(1,1) NOT NULL,
     nomUsuario NVARCHAR(50) NULL,
