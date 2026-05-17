@@ -37,13 +37,17 @@ namespace Oasis_Sports
                 return;
             }
 
-            Usuario user = bllUsuario.Login(textBox1.Text, textBox2.Text);
+            String NomUsuario = textBox1.Text;
+            String Contraseña = textBox2.Text;
 
-            if (user != null)
+            Usuario user = bllUsuario.Listar().FirstOrDefault(u => u.Username == NomUsuario);
+
+
+            if (user != null && user.Password == Contraseña)
             {
                 SessionManager.GetInstance().Login(user);
 
-                MessageBox.Show("Login correcto");
+                MessageBox.Show("Bienvenido " + NomUsuario);
 
                 FrmMenu menu = new FrmMenu();
                 menu.Show();
@@ -57,9 +61,9 @@ namespace Oasis_Sports
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-            textBox1.Text = "admin";
+            
             textBox2.Text = "1234";
-           //tambien hice para = user 1234
+           
         }
     }
 }
