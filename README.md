@@ -8,7 +8,8 @@ CREATE TABLE usuarios (
     contraseña NVARCHAR(50) NULL,
     PRIMARY KEY (id_usuario)
 );
-\n
+
+
 CREATE TABLE BitacoraEventos
 (
     IdEvento INT IDENTITY(1,1) PRIMARY KEY,
