@@ -1,4 +1,6 @@
-﻿using Servicios;
+﻿using BLL;
+using Entidades;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,8 +34,19 @@ namespace Oasis_Sports
 
         private void lOGOUTToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(SessionManager.GetInstance().IsLogged())
+            if (SessionManager.GetInstance().IsLogged())
             {
+                BLL_Evento bllEvento = new BLL_Evento();
+
+                bllEvento.RegistrarEvento(new Evento()
+                    {
+                        Usuario = SessionManager.GetInstance().Usuario.Username,
+                        Modulo = "Login",
+                        Descripcion = "Cierre de sesión",
+                        Fecha = DateTime.Now,
+                        Criticidad = 1
+                    });
+
                 SessionManager.GetInstance().Logout();
                 MessageBox.Show("Sesion cerrada con exito");
             }
@@ -41,6 +54,18 @@ namespace Oasis_Sports
             {
                 MessageBox.Show("No existe una sesion activa");
             }
+        }
+
+        private void FrmMenu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmBitacora frm = new FrmBitacora();
+
+            frm.ShowDialog();
         }
     }
 }

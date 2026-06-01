@@ -31,15 +31,16 @@
             menuStrip1 = new MenuStrip();
             uSUARIOToolStripMenuItem = new ToolStripMenuItem();
             lOGINToolStripMenuItem = new ToolStripMenuItem();
+            lOGOUTToolStripMenuItem = new ToolStripMenuItem();
             sALIRToolStripMenuItem = new ToolStripMenuItem();
             label3 = new Label();
-            lOGOUTToolStripMenuItem = new ToolStripMenuItem();
+            bitacoraToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { uSUARIOToolStripMenuItem, sALIRToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { uSUARIOToolStripMenuItem, sALIRToolStripMenuItem, bitacoraToolStripMenuItem });
             menuStrip1.Location = new Point(2, 2);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(796, 24);
@@ -57,9 +58,16 @@
             // lOGINToolStripMenuItem
             // 
             lOGINToolStripMenuItem.Name = "lOGINToolStripMenuItem";
-            lOGINToolStripMenuItem.Size = new Size(180, 22);
+            lOGINToolStripMenuItem.Size = new Size(130, 22);
             lOGINToolStripMenuItem.Text = "LOGIN";
             lOGINToolStripMenuItem.Click += lOGINToolStripMenuItem_Click;
+            // 
+            // lOGOUTToolStripMenuItem
+            // 
+            lOGOUTToolStripMenuItem.Name = "lOGOUTToolStripMenuItem";
+            lOGOUTToolStripMenuItem.Size = new Size(130, 22);
+            lOGOUTToolStripMenuItem.Text = "LOGOUT";
+            lOGOUTToolStripMenuItem.Click += lOGOUTToolStripMenuItem_Click;
             // 
             // sALIRToolStripMenuItem
             // 
@@ -80,12 +88,12 @@
             label3.TabIndex = 6;
             label3.Text = "OASIS SPORTS";
             // 
-            // lOGOUTToolStripMenuItem
+            // bitacoraToolStripMenuItem
             // 
-            lOGOUTToolStripMenuItem.Name = "lOGOUTToolStripMenuItem";
-            lOGOUTToolStripMenuItem.Size = new Size(180, 22);
-            lOGOUTToolStripMenuItem.Text = "LOGOUT";
-            lOGOUTToolStripMenuItem.Click += lOGOUTToolStripMenuItem_Click;
+            bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
+            bitacoraToolStripMenuItem.Size = new Size(62, 20);
+            bitacoraToolStripMenuItem.Text = "Bitacora";
+            bitacoraToolStripMenuItem.Click += bitacoraToolStripMenuItem_Click;
             // 
             // FrmMenu
             // 
@@ -98,6 +106,7 @@
             MainMenuStrip = menuStrip1;
             Name = "FrmMenu";
             Text = "FrmMenu";
+            Load += FrmMenu_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -112,5 +121,6 @@
         private ToolStripMenuItem sALIRToolStripMenuItem;
         private Label label3;
         private ToolStripMenuItem lOGOUTToolStripMenuItem;
+        private ToolStripMenuItem bitacoraToolStripMenuItem;
     }
 }

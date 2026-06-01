@@ -17,15 +17,19 @@ namespace DAL
         public static string cadena2 = "Data Source=localhost\010-342-03-1091\\Navegador;Initial Catalog = OasisSports;Integrated Security = True;Persist Security Info=False " +
             "Pooling=False; MultipleActiveResultSets=False; Encrypt=True;TrustServerCertificate=True;Command Timeout = 0;";
 
-
-
+        public static string cadena3 =
+        "Data Source=.;" +
+        "Initial Catalog=OasisSports;" +
+        "Integrated Security=True;" +
+        "Encrypt=True;" +
+        "TrustServerCertificate=True;";
 
         private SqlConnection conexion;
 
        
         public Conexion()
         {
-            conexion = new SqlConnection(cadena1);
+            conexion = new SqlConnection(cadena3);
         }
 
        

@@ -47,6 +47,17 @@ namespace Oasis_Sports
             {
                 SessionManager.GetInstance().Login(user);
 
+                BLL_Evento bllEvento = new BLL_Evento();
+
+                bllEvento.RegistrarEvento(new Evento()
+                    {
+                        Usuario = user.Username,
+                        Modulo = "Login",
+                        Descripcion = "Inicio de sesión",
+                        Fecha = DateTime.Now,
+                        Criticidad = 1
+                    });
+
                 MessageBox.Show("Bienvenido " + NomUsuario);
 
                 FrmMenu menu = new FrmMenu();
@@ -55,6 +66,16 @@ namespace Oasis_Sports
             }
             else
             {
+                BLL_Evento bllEvento = new BLL_Evento();
+
+                bllEvento.RegistrarEvento(new Evento()
+                    {
+                        Usuario = textBox1.Text,
+                        Modulo = "Login",
+                        Descripcion = "Intento fallido",
+                        Fecha = DateTime.Now,
+                        Criticidad = 3
+                    });
                 MessageBox.Show("Usuario o contraseña incorrectos");
             }
         }
