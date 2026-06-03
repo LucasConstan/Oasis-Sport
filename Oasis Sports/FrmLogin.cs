@@ -29,6 +29,8 @@ namespace Oasis_Sports
             this.Hide();
         }
 
+        Encriptacion encriptador = new Encriptacion();
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (SessionManager.GetInstance().IsLogged())
@@ -43,7 +45,7 @@ namespace Oasis_Sports
             Usuario user = bllUsuario.Listar().FirstOrDefault(u => u.Username == NomUsuario);
 
 
-            if (user != null && user.Password == Contraseña)
+            if (user != null && user.Password == encriptador.Encriptar(Contraseña))
             {
                 SessionManager.GetInstance().Login(user);
 

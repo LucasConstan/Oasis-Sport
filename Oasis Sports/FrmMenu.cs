@@ -39,16 +39,18 @@ namespace Oasis_Sports
                 BLL_Evento bllEvento = new BLL_Evento();
 
                 bllEvento.RegistrarEvento(new Evento()
-                    {
-                        Usuario = SessionManager.GetInstance().Usuario.Username,
-                        Modulo = "Login",
-                        Descripcion = "Cierre de sesión",
-                        Fecha = DateTime.Now,
-                        Criticidad = 1
-                    });
+                {
+                    Usuario = SessionManager.GetInstance().Usuario.Username,
+                    Modulo = "Login",
+                    Descripcion = "Cierre de sesión",
+                    Fecha = DateTime.Now,
+                    Criticidad = 1
+                });
 
                 SessionManager.GetInstance().Logout();
                 MessageBox.Show("Sesion cerrada con exito");
+                OcultarControles();
+
             }
             else
             {
@@ -58,14 +60,39 @@ namespace Oasis_Sports
 
         private void FrmMenu_Load(object sender, EventArgs e)
         {
-
+            if (SessionManager.GetInstance().IsLogged() == true)
+            {
+                bitacoraToolStripMenuItem.Visible = true;
+            }
         }
 
         private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void bITACORAToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
             FrmBitacora frm = new FrmBitacora();
 
             frm.ShowDialog();
+        }
+
+        private void bitacoraToolStripMenuItem_VisibleChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OcultarControles()
+        {
+            bitacoraToolStripMenuItem.Visible = false;
+        }
+
+        private void gESTIONDEUSUARIOSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmGestionUsuarios frmGestionUsuarios = new FrmGestionUsuarios();
+            frmGestionUsuarios.Show();
+            this.Hide();
         }
     }
 }

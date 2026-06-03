@@ -14,5 +14,10 @@ namespace BLL
             return DAL_Usuario.Listar();
         }
 
+        public void AñadirUsuario(Usuario usuario)
+        {
+            DAL_Usuario.AñadirUsuario(usuario);
+        }
+
     }
 }

@@ -32,15 +32,17 @@
             uSUARIOToolStripMenuItem = new ToolStripMenuItem();
             lOGINToolStripMenuItem = new ToolStripMenuItem();
             lOGOUTToolStripMenuItem = new ToolStripMenuItem();
+            bitacoraToolStripMenuItem = new ToolStripMenuItem();
+            bITACORAToolStripMenuItem1 = new ToolStripMenuItem();
+            gESTIONDEUSUARIOSToolStripMenuItem = new ToolStripMenuItem();
             sALIRToolStripMenuItem = new ToolStripMenuItem();
             label3 = new Label();
-            bitacoraToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { uSUARIOToolStripMenuItem, sALIRToolStripMenuItem, bitacoraToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { uSUARIOToolStripMenuItem, bitacoraToolStripMenuItem, sALIRToolStripMenuItem });
             menuStrip1.Location = new Point(2, 2);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(796, 24);
@@ -69,6 +71,31 @@
             lOGOUTToolStripMenuItem.Text = "LOGOUT";
             lOGOUTToolStripMenuItem.Click += lOGOUTToolStripMenuItem_Click;
             // 
+            // bitacoraToolStripMenuItem
+            // 
+            bitacoraToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { bITACORAToolStripMenuItem1, gESTIONDEUSUARIOSToolStripMenuItem });
+            bitacoraToolStripMenuItem.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
+            bitacoraToolStripMenuItem.Size = new Size(63, 20);
+            bitacoraToolStripMenuItem.Text = "ADMIN";
+            bitacoraToolStripMenuItem.Visible = false;
+            bitacoraToolStripMenuItem.Click += bitacoraToolStripMenuItem_Click;
+            bitacoraToolStripMenuItem.VisibleChanged += bitacoraToolStripMenuItem_VisibleChanged;
+            // 
+            // bITACORAToolStripMenuItem1
+            // 
+            bITACORAToolStripMenuItem1.Name = "bITACORAToolStripMenuItem1";
+            bITACORAToolStripMenuItem1.Size = new Size(214, 22);
+            bITACORAToolStripMenuItem1.Text = "BITACORA DE EVENTOS";
+            bITACORAToolStripMenuItem1.Click += bITACORAToolStripMenuItem1_Click;
+            // 
+            // gESTIONDEUSUARIOSToolStripMenuItem
+            // 
+            gESTIONDEUSUARIOSToolStripMenuItem.Name = "gESTIONDEUSUARIOSToolStripMenuItem";
+            gESTIONDEUSUARIOSToolStripMenuItem.Size = new Size(214, 22);
+            gESTIONDEUSUARIOSToolStripMenuItem.Text = "GESTION DE USUARIOS";
+            gESTIONDEUSUARIOSToolStripMenuItem.Click += gESTIONDEUSUARIOSToolStripMenuItem_Click;
+            // 
             // sALIRToolStripMenuItem
             // 
             sALIRToolStripMenuItem.Font = new Font("Times New Roman", 10F);
@@ -87,13 +114,6 @@
             label3.Size = new Size(398, 61);
             label3.TabIndex = 6;
             label3.Text = "OASIS SPORTS";
-            // 
-            // bitacoraToolStripMenuItem
-            // 
-            bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
-            bitacoraToolStripMenuItem.Size = new Size(62, 20);
-            bitacoraToolStripMenuItem.Text = "Bitacora";
-            bitacoraToolStripMenuItem.Click += bitacoraToolStripMenuItem_Click;
             // 
             // FrmMenu
             // 
@@ -122,5 +142,7 @@
         private Label label3;
         private ToolStripMenuItem lOGOUTToolStripMenuItem;
         private ToolStripMenuItem bitacoraToolStripMenuItem;
+        private ToolStripMenuItem bITACORAToolStripMenuItem1;
+        private ToolStripMenuItem gESTIONDEUSUARIOSToolStripMenuItem;
     }
 }

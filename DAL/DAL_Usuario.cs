@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using Servicios;
 
 namespace DAL
 {
@@ -18,7 +19,7 @@ namespace DAL
             SqlConnection cn = conexion.ObtenerConexion();
             cn.Open();
 
-            String query = "select NomUsuario, Contraseña from Usuarios";
+            string query = "select NomUsuario, Contraseña from Usuarios";
 
             SqlCommand cmd = new SqlCommand(query, cn);
             try
@@ -45,6 +46,27 @@ namespace DAL
 
 
             return lista;
+        }
+
+        Encriptacion encriptador = new Encriptacion();
+
+        public void AñadirUsuario(Usuario usuario)
+        {
+            Conexion conexion = new Conexion();
+            SqlConnection cn = conexion.ObtenerConexion();
+            cn.Open();
+
+            string query = "INSERT INTO usuarios (nomUsuario, contraseña) VALUES (@NomUsuario, @Contraseña)";
+
+            using (SqlCommand cmd = new SqlCommand(query, cn))
+            {
+                
+                cmd.Parameters.AddWithValue("@NomUsuario", usuario.Username);
+                cmd.Parameters.AddWithValue("@Contraseña", encriptador.Encriptar(usuario.Password)); 
+
+                
+                cmd.ExecuteNonQuery();
+            }
         }
 
     }
