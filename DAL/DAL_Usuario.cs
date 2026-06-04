@@ -19,7 +19,7 @@ namespace DAL
             SqlConnection cn = conexion.ObtenerConexion();
             cn.Open();
 
-            string query = "select NomUsuario, Contraseña from Usuarios";
+            string query = "select Id_Usuario, NomUsuario, Contraseña from Usuarios";
 
             SqlCommand cmd = new SqlCommand(query, cn);
             try
@@ -30,17 +30,20 @@ namespace DAL
                     {
                         lista.Add(new Usuario()
                         {
+                            Id = Convert.ToInt32(reader["Id_Usuario"]),
                             Username = reader["NomUsuario"].ToString(),
                             Password = reader["Contraseña"].ToString(),
+
 
                         });
 
                     }
                 }
             }
-            catch
+            catch (Exception ex) 
             {
-                System.Console.WriteLine("Error en la busqueda");
+                System.Console.WriteLine("Error en la búsqueda: " + ex.Message);
+                
             }
 
 
@@ -65,6 +68,42 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@Contraseña", encriptador.Encriptar(usuario.Password)); 
 
                 
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void EliminarUsuario(int idUsuario)
+        {
+            Conexion conexion = new Conexion();
+            SqlConnection cn = conexion.ObtenerConexion();
+            cn.Open();
+
+            string query = "DELETE FROM Usuarios WHERE Id_Usuario = @Id_Usuario";
+
+            using (SqlCommand cmd = new SqlCommand(query, cn))
+            {
+                cmd.Parameters.AddWithValue("@Id_Usuario", idUsuario);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void ModificarUsuario(int idUsuario, Usuario usuario)
+        {
+            Conexion conexion = new Conexion();
+            SqlConnection cn = conexion.ObtenerConexion();
+            cn.Open();
+
+            string query = @"UPDATE Usuarios
+                     SET NomUsuario = @NomUsuario,
+                         Contraseña = @Contraseña
+                     WHERE Id_Usuario = @IdUsuario";
+
+            using (SqlCommand cmd = new SqlCommand(query, cn))
+            {
+                cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                cmd.Parameters.AddWithValue("@NomUsuario", usuario.Username);
+                cmd.Parameters.AddWithValue("@Contraseña", encriptador.Encriptar(usuario.Password));
+
                 cmd.ExecuteNonQuery();
             }
         }

@@ -78,6 +78,8 @@ namespace Oasis_Sports
                         Fecha = DateTime.Now,
                         Criticidad = 3
                     });
+
+                //MessageBox.Show(" Las contraseñas son " + user.Password + " y " + Contraseña);
                 MessageBox.Show("Usuario o contraseña incorrectos");
             }
         }

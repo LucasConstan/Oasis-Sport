@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,7 +24,7 @@ namespace Oasis_Sports
 
         private void btnAñadir_Click(object sender, EventArgs e)
         {
-            if (txtContraseñaRepetida.Text == txtContraseña.Text  && txtUsuario.Text != "")
+            if (txtContraseñaRepetida.Text == txtContraseña.Text && txtUsuario.Text != "")
             {
                 Usuario usuario = new Usuario();
                 usuario.Username = txtUsuario.Text;
@@ -39,7 +40,7 @@ namespace Oasis_Sports
             {
                 MessageBox.Show("Error en la carga de datos");
             }
-            
+
 
         }
 
@@ -53,6 +54,65 @@ namespace Oasis_Sports
             FrmMenu frmMenu = new FrmMenu();
             frmMenu.Show();
             this.Hide();
+        }
+
+        private int idUsuarioSeleccionado;
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (idUsuarioSeleccionado != 0)
+            {
+                bllUsuario.EliminarUsuario(idUsuarioSeleccionado);
+                dataGridView1.DataSource = bllUsuario.Listar();
+
+                txtUsuario.Clear();
+                txtContraseña.Clear();
+
+                MessageBox.Show("El Usuario fue eliminado con exito");
+
+                idUsuarioSeleccionado = 0;
+            }
+
+            else
+            {
+                MessageBox.Show("Seleccione un usuario en la grilla");
+            }
+
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow fila = dataGridView1.Rows[e.RowIndex];
+
+                idUsuarioSeleccionado = Convert.ToInt32(fila.Cells["ID"].Value);
+
+                txtUsuario.Text = fila.Cells["Username"].Value.ToString();
+                txtContraseña.Text = "";
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (idUsuarioSeleccionado != 0)
+            {
+                Usuario usuario = new Usuario()
+                {
+                    Username = txtUsuario.Text,
+                    Password = txtContraseña.Text
+                };
+
+                bllUsuario.ModificarUsuario(idUsuarioSeleccionado, usuario);
+                dataGridView1.DataSource = bllUsuario.Listar();
+
+                MessageBox.Show("El Usuario fue modificado con exito");
+            }
+
+            else
+            {
+                MessageBox.Show("Seleccione un usuario en la grilla");
+            }
         }
     }
 }
