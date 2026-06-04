@@ -1,5 +1,6 @@
 ﻿using BLL;
 using Entidades;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,6 +32,16 @@ namespace Oasis_Sports
                 usuario.Password = txtContraseñaRepetida.Text;
 
                 bllUsuario.AñadirUsuario(usuario);
+                BLL_Evento bllEvento = new BLL_Evento();
+
+                bllEvento.RegistrarEvento(new Evento()
+                    {
+                        Usuario = SessionManager.GetInstance().Usuario.Username,
+                        Modulo = "Usuarios",
+                        Descripcion = "Alta de usuario: " + usuario.Username,
+                        Fecha = DateTime.Now,
+                        Criticidad = 2
+                    });
                 dataGridView1.DataSource = bllUsuario.Listar();
 
                 MessageBox.Show("Usuario añadido correctamente");
@@ -63,6 +74,17 @@ namespace Oasis_Sports
             if (idUsuarioSeleccionado != 0)
             {
                 bllUsuario.EliminarUsuario(idUsuarioSeleccionado);
+
+                BLL_Evento bllEvento = new BLL_Evento();
+
+                bllEvento.RegistrarEvento(new Evento()
+                    {
+                        Usuario = SessionManager.GetInstance().Usuario.Username,
+                        Modulo = "Usuarios",
+                        Descripcion = "Eliminación de usuario",
+                        Fecha = DateTime.Now,
+                        Criticidad = 3
+                    });
                 dataGridView1.DataSource = bllUsuario.Listar();
 
                 txtUsuario.Clear();
@@ -104,6 +126,16 @@ namespace Oasis_Sports
                 };
 
                 bllUsuario.ModificarUsuario(idUsuarioSeleccionado, usuario);
+                BLL_Evento bllEvento = new BLL_Evento();
+
+                bllEvento.RegistrarEvento(new Evento()
+                    {
+                        Usuario = SessionManager.GetInstance().Usuario.Username,
+                        Modulo = "Usuarios",
+                        Descripcion = "Modificación de usuario: " + usuario.Username,
+                        Fecha = DateTime.Now,
+                        Criticidad = 2
+                    });
                 dataGridView1.DataSource = bllUsuario.Listar();
 
                 MessageBox.Show("El Usuario fue modificado con exito");

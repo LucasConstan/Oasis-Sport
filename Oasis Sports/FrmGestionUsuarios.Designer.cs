@@ -44,6 +44,7 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.BackgroundColor = Color.White;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(305, 0);
             dataGridView1.MultiSelect = false;
@@ -57,6 +58,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.ForeColor = Color.DarkGreen;
             label1.Location = new Point(10, 15);
             label1.Name = "label1";
             label1.Size = new Size(107, 21);
@@ -81,6 +83,7 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.ForeColor = Color.DarkGreen;
             label2.Location = new Point(10, 82);
             label2.Name = "label2";
             label2.Size = new Size(149, 21);
@@ -98,6 +101,7 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.ForeColor = Color.DarkGreen;
             label3.Location = new Point(8, 148);
             label3.Name = "label3";
             label3.Size = new Size(227, 21);
@@ -106,48 +110,57 @@
             // 
             // btnAñadir
             // 
+            btnAñadir.BackColor = Color.White;
+            btnAñadir.ForeColor = Color.DarkGreen;
             btnAñadir.Location = new Point(12, 229);
             btnAñadir.Name = "btnAñadir";
             btnAñadir.Size = new Size(209, 35);
             btnAñadir.TabIndex = 7;
             btnAñadir.Text = "AÑADIR";
-            btnAñadir.UseVisualStyleBackColor = true;
+            btnAñadir.UseVisualStyleBackColor = false;
             btnAñadir.Click += btnAñadir_Click;
             // 
             // btnModificar
             // 
+            btnModificar.BackColor = Color.White;
+            btnModificar.ForeColor = Color.DarkGreen;
             btnModificar.Location = new Point(12, 285);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(209, 35);
             btnModificar.TabIndex = 8;
             btnModificar.Text = "MODIFICAR";
-            btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.UseVisualStyleBackColor = false;
             btnModificar.Click += btnModificar_Click;
             // 
             // btnEliminar
             // 
+            btnEliminar.BackColor = Color.White;
+            btnEliminar.ForeColor = Color.DarkGreen;
             btnEliminar.Location = new Point(12, 339);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(209, 35);
             btnEliminar.TabIndex = 9;
             btnEliminar.Text = "ELIMINAR";
-            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.UseVisualStyleBackColor = false;
             btnEliminar.Click += btnEliminar_Click;
             // 
             // button1
             // 
+            button1.BackColor = Color.White;
+            button1.ForeColor = Color.DarkGreen;
             button1.Location = new Point(12, 392);
             button1.Name = "button1";
             button1.Size = new Size(209, 35);
             button1.TabIndex = 10;
             button1.Text = "VOLVER";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // FrmGestionUsuarios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(224, 224, 224);
             ClientSize = new Size(881, 482);
             Controls.Add(button1);
             Controls.Add(btnEliminar);

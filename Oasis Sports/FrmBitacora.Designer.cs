@@ -35,12 +35,13 @@
             // dgvBitacora
             // 
             dgvBitacora.AllowUserToAddRows = false;
+            dgvBitacora.BackgroundColor = Color.DarkGreen;
             dgvBitacora.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvBitacora.Dock = DockStyle.Fill;
             dgvBitacora.Location = new Point(0, 0);
             dgvBitacora.Name = "dgvBitacora";
             dgvBitacora.ReadOnly = true;
-            dgvBitacora.Size = new Size(800, 450);
+            dgvBitacora.Size = new Size(658, 450);
             dgvBitacora.TabIndex = 0;
             dgvBitacora.CellContentClick += dgvBitacora_CellContentClick;
             // 
@@ -48,7 +49,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(658, 450);
             Controls.Add(dgvBitacora);
             Name = "FrmBitacora";
             Text = "FrmBitacora";

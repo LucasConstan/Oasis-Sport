@@ -52,13 +52,13 @@ namespace Oasis_Sports
                 BLL_Evento bllEvento = new BLL_Evento();
 
                 bllEvento.RegistrarEvento(new Evento()
-                    {
-                        Usuario = user.Username,
-                        Modulo = "Login",
-                        Descripcion = "Inicio de sesión",
-                        Fecha = DateTime.Now,
-                        Criticidad = 1
-                    });
+                {
+                    Usuario = user.Username,
+                    Modulo = "Login",
+                    Descripcion = "Inicio de sesión",
+                    Fecha = DateTime.Now,
+                    Criticidad = 1
+                });
 
                 MessageBox.Show("Bienvenido " + NomUsuario);
 
@@ -71,13 +71,13 @@ namespace Oasis_Sports
                 BLL_Evento bllEvento = new BLL_Evento();
 
                 bllEvento.RegistrarEvento(new Evento()
-                    {
-                        Usuario = textBox1.Text,
-                        Modulo = "Login",
-                        Descripcion = "Intento fallido",
-                        Fecha = DateTime.Now,
-                        Criticidad = 3
-                    });
+                {
+                    Usuario = textBox1.Text,
+                    Modulo = "Login",
+                    Descripcion = "Intento fallido",
+                    Fecha = DateTime.Now,
+                    Criticidad = 3
+                });
 
                 //MessageBox.Show(" Las contraseñas son " + user.Password + " y " + Contraseña);
                 MessageBox.Show("Usuario o contraseña incorrectos");
@@ -86,9 +86,21 @@ namespace Oasis_Sports
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-            
+
             textBox2.Text = "1234";
-           
+            textBox1.Text = "ferni";
+
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenu));
             menuStrip1 = new MenuStrip();
             uSUARIOToolStripMenuItem = new ToolStripMenuItem();
             lOGINToolStripMenuItem = new ToolStripMenuItem();
@@ -36,7 +37,6 @@
             bITACORAToolStripMenuItem1 = new ToolStripMenuItem();
             gESTIONDEUSUARIOSToolStripMenuItem = new ToolStripMenuItem();
             sALIRToolStripMenuItem = new ToolStripMenuItem();
-            label3 = new Label();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -60,14 +60,14 @@
             // lOGINToolStripMenuItem
             // 
             lOGINToolStripMenuItem.Name = "lOGINToolStripMenuItem";
-            lOGINToolStripMenuItem.Size = new Size(130, 22);
+            lOGINToolStripMenuItem.Size = new Size(180, 22);
             lOGINToolStripMenuItem.Text = "LOGIN";
             lOGINToolStripMenuItem.Click += lOGINToolStripMenuItem_Click;
             // 
             // lOGOUTToolStripMenuItem
             // 
             lOGOUTToolStripMenuItem.Name = "lOGOUTToolStripMenuItem";
-            lOGOUTToolStripMenuItem.Size = new Size(130, 22);
+            lOGOUTToolStripMenuItem.Size = new Size(180, 22);
             lOGOUTToolStripMenuItem.Text = "LOGOUT";
             lOGOUTToolStripMenuItem.Click += lOGOUTToolStripMenuItem_Click;
             // 
@@ -104,25 +104,16 @@
             sALIRToolStripMenuItem.Text = "SALIR";
             sALIRToolStripMenuItem.Click += sALIRToolStripMenuItem_Click;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Times New Roman", 40F, FontStyle.Bold | FontStyle.Italic);
-            label3.ForeColor = Color.ForestGreen;
-            label3.Location = new Point(177, 210);
-            label3.Name = "label3";
-            label3.Size = new Size(398, 61);
-            label3.TabIndex = 6;
-            label3.Text = "OASIS SPORTS";
-            // 
             // FrmMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.DarkGray;
+            BackColor = Color.FromArgb(224, 224, 224);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(800, 450);
-            Controls.Add(label3);
             Controls.Add(menuStrip1);
+            DoubleBuffered = true;
             MainMenuStrip = menuStrip1;
             Name = "FrmMenu";
             Text = "FrmMenu";
@@ -139,7 +130,6 @@
         private ToolStripMenuItem uSUARIOToolStripMenuItem;
         private ToolStripMenuItem lOGINToolStripMenuItem;
         private ToolStripMenuItem sALIRToolStripMenuItem;
-        private Label label3;
         private ToolStripMenuItem lOGOUTToolStripMenuItem;
         private ToolStripMenuItem bitacoraToolStripMenuItem;
         private ToolStripMenuItem bITACORAToolStripMenuItem1;
