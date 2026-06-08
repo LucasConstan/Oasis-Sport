@@ -34,27 +34,31 @@ namespace Oasis_Sports
 
         private void lOGOUTToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SessionManager.GetInstance().IsLogged())
+            DialogResult result = MessageBox.Show("¿Esta seguro de cerrar sesion?", "Confirmacion", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
             {
-                BLL_Evento bllEvento = new BLL_Evento();
-
-                bllEvento.RegistrarEvento(new Evento()
+                if (SessionManager.GetInstance().IsLogged())
                 {
-                    Usuario = SessionManager.GetInstance().Usuario.Username,
-                    Modulo = "Login",
-                    Descripcion = "Cierre de sesión",
-                    Fecha = DateTime.Now,
-                    Criticidad = 1
-                });
+                    BLL_Evento bllEvento = new BLL_Evento();
 
-                SessionManager.GetInstance().Logout();
-                MessageBox.Show("Sesion cerrada con exito");
-                OcultarControles();
+                    bllEvento.RegistrarEvento(new Evento()
+                    {
+                        Usuario = SessionManager.GetInstance().Usuario.Username,
+                        Modulo = "Login",
+                        Descripcion = "Cierre de sesión",
+                        Fecha = DateTime.Now,
+                        Criticidad = 1
+                    });
 
-            }
-            else
-            {
-                MessageBox.Show("No existe una sesion activa");
+                    SessionManager.GetInstance().Logout();
+                    MessageBox.Show("Sesion cerrada con exito");
+                    OcultarControles();
+
+                }
+                else
+                {
+                    MessageBox.Show("No existe una sesion activa");
+                }
             }
         }
 

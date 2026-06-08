@@ -39,14 +39,10 @@ namespace Oasis_Sports
                 return;
             }
 
-            String NomUsuario = textBox1.Text;
-            String Contraseña = textBox2.Text;
-
-            Usuario user = bllUsuario.Listar().FirstOrDefault(u => u.Username == NomUsuario);
-
-
-            if (user != null && user.Password == encriptador.Encriptar(Contraseña))
+            try
             {
+                Usuario user = bllUsuario.ValidarUsuario(textBox1.Text, textBox2.Text);
+
                 SessionManager.GetInstance().Login(user);
 
                 BLL_Evento bllEvento = new BLL_Evento();
@@ -60,13 +56,13 @@ namespace Oasis_Sports
                     Criticidad = 1
                 });
 
-                MessageBox.Show("Bienvenido " + NomUsuario);
+                MessageBox.Show("Bienvenido " + user.Username);
 
                 FrmMenu menu = new FrmMenu();
                 menu.Show();
                 this.Hide();
             }
-            else
+            catch (Exception ex)
             {
                 BLL_Evento bllEvento = new BLL_Evento();
 
@@ -79,8 +75,7 @@ namespace Oasis_Sports
                     Criticidad = 3
                 });
 
-                //MessageBox.Show(" Las contraseñas son " + user.Password + " y " + Contraseña);
-                MessageBox.Show("Usuario o contraseña incorrectos");
+                MessageBox.Show(ex.Message);
             }
         }
 

@@ -5,5 +5,7 @@
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public bool Bloqueado { get; set; }
+        public bool Eliminado { get; set; }
     }
 }
