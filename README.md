@@ -6,6 +6,8 @@ CREATE TABLE usuarios (
     id_usuario INT IDENTITY(1,1) NOT NULL,
     nomUsuario NVARCHAR(50) NULL,
     contraseña NVARCHAR(100) NULL,
+    bloqueado BIT NOT NULL DEFAULT 0,
+    eliminado BIT NOT NULL DEFAULT 0,
     PRIMARY KEY (id_usuario)
 );
 
