@@ -21,3 +21,25 @@ CREATE TABLE BitacoraEventos
     Fecha DATETIME,
     Criticidad INT
 )
+
+
+CREATE TABLE Permiso (
+    Id INT PRIMARY KEY IDENTITY,
+    Nombre NVARCHAR(100) NOT NULL,
+    Codigo NVARCHAR(100) NULL,
+    EsGrupo BIT NOT NULL
+);
+
+CREATE TABLE PermisoRelacion (
+    PadreId INT NOT NULL,
+    HijoId INT NOT NULL,
+    PRIMARY KEY (PadreId, HijoId),
+    FOREIGN KEY (PadreId) REFERENCES Permiso(Id),
+    FOREIGN KEY (HijoId) REFERENCES Permiso(Id)
+);
+
+CREATE TABLE UsuarioPermiso (
+    UsuarioId INT NOT NULL,
+    PermisoId INT NOT NULL,
+    PRIMARY KEY (UsuarioId, PermisoId)
+);
