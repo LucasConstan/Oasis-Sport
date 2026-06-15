@@ -73,39 +73,9 @@ namespace Oasis_Sports.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap football_player_11549445706b0fmufdqxe {
-            get {
-                object obj = ResourceManager.GetObject("football-player-11549445706b0fmufdqxe", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Gemini_Generated_Image_cxwt1wcxwt1wcxwt {
             get {
                 object obj = ResourceManager.GetObject("Gemini_Generated_Image_cxwt1wcxwt1wcxwt", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap male_silhouette_soccer_player_by_Vexels {
-            get {
-                object obj = ResourceManager.GetObject("male-silhouette-soccer-player-by-Vexels", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap menu {
-            get {
-                object obj = ResourceManager.GetObject("menu", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
