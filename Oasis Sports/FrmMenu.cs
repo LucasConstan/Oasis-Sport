@@ -62,12 +62,18 @@ namespace Oasis_Sports
             }
         }
 
+        BLL_Permisos permisosBLL = new BLL_Permisos();
+
         private void FrmMenu_Load(object sender, EventArgs e)
         {
-            if (SessionManager.GetInstance().IsLogged() == true)
+            OcultarControles();
+            if (!SessionManager.GetInstance().IsLogged())
             {
-                bitacoraToolStripMenuItem.Visible = true;
+                return;
             }
+                
+            AplicarPermisos();
+            
         }
 
         private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e)
@@ -90,6 +96,26 @@ namespace Oasis_Sports
         private void OcultarControles()
         {
             bitacoraToolStripMenuItem.Visible = false;
+            bITACORAToolStripMenuItem1.Visible = false;
+            gESTIONDEUSUARIOSToolStripMenuItem.Visible = false;
+            gESTIONDEPERFILESToolStripMenuItem.Visible = false;
+            gESTIONDERESERVASToolStripMenuItem.Visible = false;
+        }
+
+        private void AplicarPermisos()
+        {
+            if (SessionManager.GetInstance().IsLogged() == true)
+            {
+
+                bITACORAToolStripMenuItem1.Visible = permisoBLL.UsuarioTienePermiso(SessionManager.GetInstance().Usuario.Id, "BTE");
+                gESTIONDEUSUARIOSToolStripMenuItem.Visible = permisoBLL.UsuarioTienePermiso(SessionManager.GetInstance().Usuario.Id, "GUS");
+                gESTIONDERESERVASToolStripMenuItem.Visible = permisoBLL.UsuarioTienePermiso(SessionManager.GetInstance().Usuario.Id, "GRE");
+                gESTIONDEPERFILESToolStripMenuItem.Visible = permisoBLL.UsuarioTienePermiso(SessionManager.GetInstance().Usuario.Id, "GPE");
+
+
+                bitacoraToolStripMenuItem.Visible = true;
+
+            }
         }
 
         private void gESTIONDEUSUARIOSToolStripMenuItem_Click(object sender, EventArgs e)
@@ -98,5 +124,16 @@ namespace Oasis_Sports
             frmGestionUsuarios.Show();
             this.Hide();
         }
+
+        private void gESTIONDEPERFILESToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmGestionPerfiles frmGestionPerfiles = new FrmGestionPerfiles();
+            frmGestionPerfiles.Show();
+            this.Hide();
+        }
+
+        private BLL_Permisos permisoBLL = new BLL_Permisos();
+
+        
     }
 }

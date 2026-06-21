@@ -11,7 +11,7 @@ using BLL;
 
 namespace Oasis_Sports
 {
-    public partial class FrmBitacora : Form
+    public partial class FrmBitacora : BaseForm
     {
         BLL_Evento bllEvento = new BLL_Evento();
 
@@ -41,7 +41,7 @@ namespace Oasis_Sports
             cmbCriticidad.Items.Add("Todas");
             cmbCriticidad.Items.Add("1");
             cmbCriticidad.Items.Add("2");
-            cmbCriticidad.Items.Add("3");          
+            cmbCriticidad.Items.Add("3");
             cmbCriticidad.SelectedIndex = 0;
         }
 
@@ -94,6 +94,13 @@ namespace Oasis_Sports
             dtpHasta.Value = DateTime.Today;
 
             dgvBitacora.DataSource = tablaEventos;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FrmMenu frmMenu = new FrmMenu();
+            frmMenu.Show();
+            this.Hide();
         }
     }
 }

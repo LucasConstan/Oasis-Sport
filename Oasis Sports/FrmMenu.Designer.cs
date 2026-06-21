@@ -36,13 +36,15 @@
             bitacoraToolStripMenuItem = new ToolStripMenuItem();
             bITACORAToolStripMenuItem1 = new ToolStripMenuItem();
             gESTIONDEUSUARIOSToolStripMenuItem = new ToolStripMenuItem();
+            gESTIONDEPERFILESToolStripMenuItem = new ToolStripMenuItem();
+            gESTIONDERESERVASToolStripMenuItem = new ToolStripMenuItem();
             sALIRToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { uSUARIOToolStripMenuItem, bitacoraToolStripMenuItem, sALIRToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { uSUARIOToolStripMenuItem, bitacoraToolStripMenuItem, gESTIONDERESERVASToolStripMenuItem, sALIRToolStripMenuItem });
             menuStrip1.Location = new Point(2, 2);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(796, 24);
@@ -60,20 +62,20 @@
             // lOGINToolStripMenuItem
             // 
             lOGINToolStripMenuItem.Name = "lOGINToolStripMenuItem";
-            lOGINToolStripMenuItem.Size = new Size(180, 22);
+            lOGINToolStripMenuItem.Size = new Size(130, 22);
             lOGINToolStripMenuItem.Text = "LOGIN";
             lOGINToolStripMenuItem.Click += lOGINToolStripMenuItem_Click;
             // 
             // lOGOUTToolStripMenuItem
             // 
             lOGOUTToolStripMenuItem.Name = "lOGOUTToolStripMenuItem";
-            lOGOUTToolStripMenuItem.Size = new Size(180, 22);
+            lOGOUTToolStripMenuItem.Size = new Size(130, 22);
             lOGOUTToolStripMenuItem.Text = "LOGOUT";
             lOGOUTToolStripMenuItem.Click += lOGOUTToolStripMenuItem_Click;
             // 
             // bitacoraToolStripMenuItem
             // 
-            bitacoraToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { bITACORAToolStripMenuItem1, gESTIONDEUSUARIOSToolStripMenuItem });
+            bitacoraToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { bITACORAToolStripMenuItem1, gESTIONDEUSUARIOSToolStripMenuItem, gESTIONDEPERFILESToolStripMenuItem });
             bitacoraToolStripMenuItem.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
             bitacoraToolStripMenuItem.Size = new Size(63, 20);
@@ -95,6 +97,21 @@
             gESTIONDEUSUARIOSToolStripMenuItem.Size = new Size(214, 22);
             gESTIONDEUSUARIOSToolStripMenuItem.Text = "GESTION DE USUARIOS";
             gESTIONDEUSUARIOSToolStripMenuItem.Click += gESTIONDEUSUARIOSToolStripMenuItem_Click;
+            // 
+            // gESTIONDEPERFILESToolStripMenuItem
+            // 
+            gESTIONDEPERFILESToolStripMenuItem.Name = "gESTIONDEPERFILESToolStripMenuItem";
+            gESTIONDEPERFILESToolStripMenuItem.Size = new Size(214, 22);
+            gESTIONDEPERFILESToolStripMenuItem.Text = "GESTION DE PERFILES";
+            gESTIONDEPERFILESToolStripMenuItem.Click += gESTIONDEPERFILESToolStripMenuItem_Click;
+            // 
+            // gESTIONDERESERVASToolStripMenuItem
+            // 
+            gESTIONDERESERVASToolStripMenuItem.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            gESTIONDERESERVASToolStripMenuItem.Name = "gESTIONDERESERVASToolStripMenuItem";
+            gESTIONDERESERVASToolStripMenuItem.Size = new Size(149, 20);
+            gESTIONDERESERVASToolStripMenuItem.Text = "GESTION DE RESERVAS";
+            gESTIONDERESERVASToolStripMenuItem.Visible = false;
             // 
             // sALIRToolStripMenuItem
             // 
@@ -134,5 +151,7 @@
         private ToolStripMenuItem bitacoraToolStripMenuItem;
         private ToolStripMenuItem bITACORAToolStripMenuItem1;
         private ToolStripMenuItem gESTIONDEUSUARIOSToolStripMenuItem;
+        private ToolStripMenuItem gESTIONDEPERFILESToolStripMenuItem;
+        private ToolStripMenuItem gESTIONDERESERVASToolStripMenuItem;
     }
 }
