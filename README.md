@@ -43,3 +43,10 @@ CREATE TABLE UsuarioPermiso (
     PermisoId INT NOT NULL,
     PRIMARY KEY (UsuarioId, PermisoId)
 );
+
+INSERT INTO Permiso (Nombre, Codigo, EsGrupo)
+VALUES
+('Bitacora', 'BTE', 0),
+('Gestion de usuarios', 'GUS', 0),
+('Gestion de perfiles', 'GPE', 0),
+('Gestion de reservas', 'GRE', 0);
