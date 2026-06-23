@@ -1,4 +1,4 @@
-﻿using BLL;
+using BLL;
 using Entidades;
 using Servicios;
 using System;
@@ -14,13 +14,40 @@ using System.Windows.Forms;
 
 namespace Oasis_Sports
 {
-    public partial class FrmLogin : BaseForm
+    public partial class FrmLogin : BaseForm, IObserverIdioma
     {
         BLLUsuario bllUsuario = new BLLUsuario();
+
         public FrmLogin()
         {
             InitializeComponent();
+            LanguageManager.GetInstance().Agregar(this);
         }
+
+        
+        public void ActualizarIdioma()
+        {
+            
+            if (this.InvokeRequired)
+                this.Invoke(new Action(() => LanguageManager.GetInstance().TraducirControles(this)));
+            else
+                LanguageManager.GetInstance().TraducirControles(this);
+        }
+
+      
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            if (this.Visible)
+                ActualizarIdioma();
+        }
+
+        private void FrmLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            LanguageManager.GetInstance().Quitar(this);
+        }
+
+       
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -49,11 +76,11 @@ namespace Oasis_Sports
 
                 bllEvento.RegistrarEvento(new Evento()
                 {
-                    Usuario = user.Username,
-                    Modulo = "Login",
+                    Usuario     = user.Username,
+                    Modulo      = "Login",
                     Descripcion = "Inicio de sesión",
-                    Fecha = DateTime.Now,
-                    Criticidad = 1
+                    Fecha       = DateTime.Now,
+                    Criticidad  = 1
                 });
 
                 MessageBox.Show("Bienvenido " + user.Username);
@@ -68,11 +95,11 @@ namespace Oasis_Sports
 
                 bllEvento.RegistrarEvento(new Evento()
                 {
-                    Usuario = textBox1.Text,
-                    Modulo = "Login",
+                    Usuario     = textBox1.Text,
+                    Modulo      = "Login",
                     Descripcion = "Intento fallido",
-                    Fecha = DateTime.Now,
-                    Criticidad = 3
+                    Fecha       = DateTime.Now,
+                    Criticidad  = 3
                 });
 
                 MessageBox.Show(ex.Message);
@@ -81,21 +108,12 @@ namespace Oasis_Sports
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-
-            textBox2.Text = "1234";
-            textBox1.Text = "ferni";
-
-
+            textBox2.Text = "123";
+            textBox1.Text = "jondem";
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
+        private void pictureBox1_Click(object sender, EventArgs e) { }
 
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void label3_Click(object sender, EventArgs e) { }
     }
 }

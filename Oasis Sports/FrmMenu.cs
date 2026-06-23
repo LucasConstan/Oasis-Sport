@@ -1,4 +1,4 @@
-﻿using BLL;
+using BLL;
 using Entidades;
 using Servicios;
 using System;
@@ -13,12 +13,27 @@ using System.Windows.Forms;
 
 namespace Oasis_Sports
 {
-    public partial class FrmMenu : BaseForm
+    public partial class FrmMenu : BaseForm, IObserverIdioma   
     {
         public FrmMenu()
         {
             InitializeComponent();
+            LanguageManager.GetInstance().Agregar(this);       
         }
+
+        
+        public void ActualizarIdioma()
+        {
+            LanguageManager.GetInstance().TraducirControles(this);
+        }
+
+        
+        private void FrmMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            LanguageManager.GetInstance().Quitar(this);
+        }
+
+        
 
         private void lOGINToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -43,17 +58,16 @@ namespace Oasis_Sports
 
                     bllEvento.RegistrarEvento(new Evento()
                     {
-                        Usuario = SessionManager.GetInstance().Usuario.Username,
-                        Modulo = "Login",
+                        Usuario     = SessionManager.GetInstance().Usuario.Username,
+                        Modulo      = "Login",
                         Descripcion = "Cierre de sesión",
-                        Fecha = DateTime.Now,
-                        Criticidad = 1
+                        Fecha       = DateTime.Now,
+                        Criticidad  = 1
                     });
 
                     SessionManager.GetInstance().Logout();
                     MessageBox.Show("Sesion cerrada con exito");
                     OcultarControles();
-
                 }
                 else
                 {
@@ -68,53 +82,42 @@ namespace Oasis_Sports
         {
             OcultarControles();
             if (!SessionManager.GetInstance().IsLogged())
-            {
                 return;
-            }
-                
+
             AplicarPermisos();
-            
         }
 
-        private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e) { }
 
         private void bITACORAToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             FrmBitacora frm = new FrmBitacora();
-
             frm.ShowDialog();
         }
 
-        private void bitacoraToolStripMenuItem_VisibleChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void bitacoraToolStripMenuItem_VisibleChanged(object sender, EventArgs e) { }
 
         private void OcultarControles()
         {
-            bitacoraToolStripMenuItem.Visible = false;
-            bITACORAToolStripMenuItem1.Visible = false;
+            bitacoraToolStripMenuItem.Visible         = false;
+            bITACORAToolStripMenuItem1.Visible        = false;
             gESTIONDEUSUARIOSToolStripMenuItem.Visible = false;
             gESTIONDEPERFILESToolStripMenuItem.Visible = false;
             gESTIONDERESERVASToolStripMenuItem.Visible = false;
+            gESTIONDEIDIOMASToolStripMenuItem.Visible  = false;  
         }
 
         private void AplicarPermisos()
         {
-            if (SessionManager.GetInstance().IsLogged() == true)
+            if (SessionManager.GetInstance().IsLogged())
             {
-
-                bITACORAToolStripMenuItem1.Visible = permisoBLL.UsuarioTienePermiso(SessionManager.GetInstance().Usuario.Id, "BTE");
+                bITACORAToolStripMenuItem1.Visible         = permisoBLL.UsuarioTienePermiso(SessionManager.GetInstance().Usuario.Id, "BTE");
                 gESTIONDEUSUARIOSToolStripMenuItem.Visible = permisoBLL.UsuarioTienePermiso(SessionManager.GetInstance().Usuario.Id, "GUS");
                 gESTIONDERESERVASToolStripMenuItem.Visible = permisoBLL.UsuarioTienePermiso(SessionManager.GetInstance().Usuario.Id, "GRE");
                 gESTIONDEPERFILESToolStripMenuItem.Visible = permisoBLL.UsuarioTienePermiso(SessionManager.GetInstance().Usuario.Id, "GPE");
-
+                gESTIONDEIDIOMASToolStripMenuItem.Visible  = permisoBLL.UsuarioTienePermiso(SessionManager.GetInstance().Usuario.Id, "GID"); 
 
                 bitacoraToolStripMenuItem.Visible = true;
-
             }
         }
 
@@ -132,8 +135,12 @@ namespace Oasis_Sports
             this.Hide();
         }
 
-        private BLL_Permisos permisoBLL = new BLL_Permisos();
+        private void gESTIONDEIDIOMASToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmIdiomas frmIdiomas = new FrmIdiomas();
+            frmIdiomas.ShowDialog();
+        }
 
-        
+        private BLL_Permisos permisoBLL = new BLL_Permisos();
     }
 }

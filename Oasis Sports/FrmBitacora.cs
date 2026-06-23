@@ -56,13 +56,13 @@ namespace Oasis_Sports
 
             string filtro = "";
 
-            // Usuario
+            
             if (!string.IsNullOrWhiteSpace(txtUsuario.Text))
             {
                 filtro += $"Usuario LIKE '%{txtUsuario.Text}%'";
             }
 
-            // Criticidad
+           
             if (cmbCriticidad.Text != "Todas")
             {
                 if (filtro != "")
@@ -71,7 +71,7 @@ namespace Oasis_Sports
                 filtro += $"Criticidad = {cmbCriticidad.Text}";
             }
 
-            // Fechas
+            
             if (filtro != "")
                 filtro += " AND ";
 
