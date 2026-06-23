@@ -50,3 +50,26 @@ VALUES
 ('Gestion de usuarios', 'GUS', 0),
 ('Gestion de perfiles', 'GPE', 0),
 ('Gestion de reservas', 'GRE', 0);
+
+CREATE TABLE Idioma (
+    IdIdioma INT IDENTITY PRIMARY KEY,
+    Nombre VARCHAR(50)
+);
+
+CREATE TABLE Traduccion (
+    IdTraduccion INT IDENTITY PRIMARY KEY,
+    IdIdioma INT,
+    Clave VARCHAR(100),
+    Texto VARCHAR(200),
+    FOREIGN KEY (IdIdioma) REFERENCES Idioma(IdIdioma)
+);
+
+INSERT INTO Idioma (Nombre) VALUES ('Español');
+INSERT INTO Idioma (Nombre) VALUES ('Inglés');
+
+INSERT INTO Permiso (Nombre, Codigo, EsGrupo) VALUES ('Gestion de idiomas', 'GID', 0);
+
+SELECT Id FROM Permiso WHERE Codigo = 'GID';
+-- Reemplazar el 5 por el id que devuelva el SELECT anterior
+INSERT INTO UsuarioPermiso (UsuarioId, PermisoId) VALUES (1, 5);
+
