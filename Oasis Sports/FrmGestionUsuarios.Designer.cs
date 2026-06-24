@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             dataGridView1 = new DataGridView();
-            label1 = new Label();
+            lblUsuario = new Label();
             txtUsuario = new TextBox();
             txtContraseña = new TextBox();
-            label2 = new Label();
+            lblContraseña = new Label();
             txtContraseñaRepetida = new TextBox();
-            label3 = new Label();
+            lblRepetirContraseña = new Label();
             btnAñadir = new Button();
             btnModificar = new Button();
             btnEliminar = new Button();
-            button1 = new Button();
+            btnVolver = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -55,15 +55,15 @@
             dataGridView1.TabIndex = 0;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
-            // label1
+            // lblUsuario
             // 
-            label1.AutoSize = true;
-            label1.ForeColor = Color.DarkGreen;
-            label1.Location = new Point(10, 15);
-            label1.Name = "label1";
-            label1.Size = new Size(107, 21);
-            label1.TabIndex = 1;
-            label1.Text = "USUARIO : ";
+            lblUsuario.AutoSize = true;
+            lblUsuario.ForeColor = Color.DarkGreen;
+            lblUsuario.Location = new Point(10, 15);
+            lblUsuario.Name = "lblUsuario";
+            lblUsuario.Size = new Size(107, 21);
+            lblUsuario.TabIndex = 1;
+            lblUsuario.Text = "USUARIO : ";
             // 
             // txtUsuario
             // 
@@ -80,15 +80,15 @@
             txtContraseña.Size = new Size(209, 29);
             txtContraseña.TabIndex = 4;
             // 
-            // label2
+            // lblContraseña
             // 
-            label2.AutoSize = true;
-            label2.ForeColor = Color.DarkGreen;
-            label2.Location = new Point(10, 82);
-            label2.Name = "label2";
-            label2.Size = new Size(149, 21);
-            label2.TabIndex = 3;
-            label2.Text = "CONTRASEÑA : ";
+            lblContraseña.AutoSize = true;
+            lblContraseña.ForeColor = Color.DarkGreen;
+            lblContraseña.Location = new Point(10, 82);
+            lblContraseña.Name = "lblContraseña";
+            lblContraseña.Size = new Size(149, 21);
+            lblContraseña.TabIndex = 3;
+            lblContraseña.Text = "CONTRASEÑA : ";
             // 
             // txtContraseñaRepetida
             // 
@@ -98,15 +98,15 @@
             txtContraseñaRepetida.Size = new Size(211, 29);
             txtContraseñaRepetida.TabIndex = 6;
             // 
-            // label3
+            // lblRepetirContraseña
             // 
-            label3.AutoSize = true;
-            label3.ForeColor = Color.DarkGreen;
-            label3.Location = new Point(8, 148);
-            label3.Name = "label3";
-            label3.Size = new Size(227, 21);
-            label3.TabIndex = 5;
-            label3.Text = "REPETIR CONTRASEÑA: ";
+            lblRepetirContraseña.AutoSize = true;
+            lblRepetirContraseña.ForeColor = Color.DarkGreen;
+            lblRepetirContraseña.Location = new Point(8, 148);
+            lblRepetirContraseña.Name = "lblRepetirContraseña";
+            lblRepetirContraseña.Size = new Size(227, 21);
+            lblRepetirContraseña.TabIndex = 5;
+            lblRepetirContraseña.Text = "REPETIR CONTRASEÑA: ";
             // 
             // btnAñadir
             // 
@@ -144,17 +144,17 @@
             btnEliminar.UseVisualStyleBackColor = false;
             btnEliminar.Click += btnEliminar_Click;
             // 
-            // button1
+            // btnVolver
             // 
-            button1.BackColor = Color.White;
-            button1.ForeColor = Color.DarkGreen;
-            button1.Location = new Point(12, 392);
-            button1.Name = "button1";
-            button1.Size = new Size(209, 35);
-            button1.TabIndex = 10;
-            button1.Text = "VOLVER";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            btnVolver.BackColor = Color.White;
+            btnVolver.ForeColor = Color.DarkGreen;
+            btnVolver.Location = new Point(12, 392);
+            btnVolver.Name = "btnVolver";
+            btnVolver.Size = new Size(209, 35);
+            btnVolver.TabIndex = 10;
+            btnVolver.Text = "VOLVER";
+            btnVolver.UseVisualStyleBackColor = false;
+            btnVolver.Click += button1_Click;
             // 
             // FrmGestionUsuarios
             // 
@@ -162,19 +162,20 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(224, 224, 224);
             ClientSize = new Size(881, 482);
-            Controls.Add(button1);
+            Controls.Add(btnVolver);
             Controls.Add(btnEliminar);
             Controls.Add(btnModificar);
             Controls.Add(btnAñadir);
             Controls.Add(txtContraseñaRepetida);
-            Controls.Add(label3);
+            Controls.Add(lblRepetirContraseña);
             Controls.Add(txtContraseña);
-            Controls.Add(label2);
+            Controls.Add(lblContraseña);
             Controls.Add(txtUsuario);
-            Controls.Add(label1);
+            Controls.Add(lblUsuario);
             Controls.Add(dataGridView1);
             Name = "FrmGestionUsuarios";
             Text = "FrmGestionUsuarios";
+            FormClosing += FrmGestionUsuarios_FormClosing;
             Load += FrmGestionUsuarios_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
@@ -184,15 +185,15 @@
         #endregion
 
         private DataGridView dataGridView1;
-        private Label label1;
+        private Label lblUsuario;
         private TextBox txtUsuario;
         private TextBox txtContraseña;
-        private Label label2;
+        private Label lblContraseña;
         private TextBox txtContraseñaRepetida;
-        private Label label3;
+        private Label lblRepetirContraseña;
         private Button btnAñadir;
         private Button btnModificar;
         private Button btnEliminar;
-        private Button button1;
+        private Button btnVolver;
     }
 }

@@ -33,14 +33,14 @@
             cmbCriticidad = new ComboBox();
             dtpDesde = new DateTimePicker();
             dtpHasta = new DateTimePicker();
-            button1 = new Button();
-            button2 = new Button();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            button3 = new Button();
+            btnBuscar = new Button();
+            btnLimpiar = new Button();
+            lblBitacora = new Label();
+            lblUsuario = new Label();
+            lblDesde = new Label();
+            lblHasta = new Label();
+            lblCriticidad = new Label();
+            btnVolver = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).BeginInit();
             SuspendLayout();
             // 
@@ -85,95 +85,95 @@
             dtpHasta.Size = new Size(157, 29);
             dtpHasta.TabIndex = 4;
             // 
-            // button1
+            // btnBuscar
             // 
-            button1.Location = new Point(53, 239);
-            button1.Name = "button1";
-            button1.Size = new Size(186, 32);
-            button1.TabIndex = 5;
-            button1.Text = "Buscar";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnBuscar.Location = new Point(53, 239);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new Size(186, 32);
+            btnBuscar.TabIndex = 5;
+            btnBuscar.Text = "Buscar";
+            btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += button1_Click;
             // 
-            // button2
+            // btnLimpiar
             // 
-            button2.Location = new Point(53, 279);
-            button2.Name = "button2";
-            button2.Size = new Size(186, 32);
-            button2.TabIndex = 6;
-            button2.Text = "Limpiar";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            btnLimpiar.Location = new Point(53, 279);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(186, 32);
+            btnLimpiar.TabIndex = 6;
+            btnLimpiar.Text = "Limpiar";
+            btnLimpiar.UseVisualStyleBackColor = true;
+            btnLimpiar.Click += button2_Click;
             // 
-            // label1
+            // lblBitacora
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(53, 33);
-            label1.Name = "label1";
-            label1.Size = new Size(157, 21);
-            label1.TabIndex = 7;
-            label1.Text = "Bitacora de eventos";
+            lblBitacora.AutoSize = true;
+            lblBitacora.Location = new Point(53, 33);
+            lblBitacora.Name = "lblBitacora";
+            lblBitacora.Size = new Size(157, 21);
+            lblBitacora.TabIndex = 7;
+            lblBitacora.Text = "Bitacora de eventos";
             // 
-            // label2
+            // lblUsuario
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(12, 84);
-            label2.Name = "label2";
-            label2.Size = new Size(68, 21);
-            label2.TabIndex = 8;
-            label2.Text = "Usuario";
+            lblUsuario.AutoSize = true;
+            lblUsuario.Location = new Point(12, 84);
+            lblUsuario.Name = "lblUsuario";
+            lblUsuario.Size = new Size(68, 21);
+            lblUsuario.TabIndex = 8;
+            lblUsuario.Text = "Usuario";
             // 
-            // label3
+            // lblDesde
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(12, 145);
-            label3.Name = "label3";
-            label3.Size = new Size(57, 21);
-            label3.TabIndex = 9;
-            label3.Text = "Desde";
+            lblDesde.AutoSize = true;
+            lblDesde.Location = new Point(12, 145);
+            lblDesde.Name = "lblDesde";
+            lblDesde.Size = new Size(57, 21);
+            lblDesde.TabIndex = 9;
+            lblDesde.Text = "Desde";
             // 
-            // label4
+            // lblHasta
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(14, 183);
-            label4.Name = "label4";
-            label4.Size = new Size(52, 21);
-            label4.TabIndex = 10;
-            label4.Text = "Hasta";
+            lblHasta.AutoSize = true;
+            lblHasta.Location = new Point(14, 183);
+            lblHasta.Name = "lblHasta";
+            lblHasta.Size = new Size(52, 21);
+            lblHasta.TabIndex = 10;
+            lblHasta.Text = "Hasta";
             // 
-            // label5
+            // lblCriticidad
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(12, 114);
-            label5.Name = "label5";
-            label5.Size = new Size(83, 21);
-            label5.TabIndex = 11;
-            label5.Text = "Criticidad";
-            label5.Click += label5_Click;
+            lblCriticidad.AutoSize = true;
+            lblCriticidad.Location = new Point(12, 114);
+            lblCriticidad.Name = "lblCriticidad";
+            lblCriticidad.Size = new Size(83, 21);
+            lblCriticidad.TabIndex = 11;
+            lblCriticidad.Text = "Criticidad";
+            lblCriticidad.Click += label5_Click;
             // 
-            // button3
+            // btnVolver
             // 
-            button3.Location = new Point(53, 320);
-            button3.Name = "button3";
-            button3.Size = new Size(186, 32);
-            button3.TabIndex = 12;
-            button3.Text = "Volver";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            btnVolver.Location = new Point(53, 320);
+            btnVolver.Name = "btnVolver";
+            btnVolver.Size = new Size(186, 32);
+            btnVolver.TabIndex = 12;
+            btnVolver.Text = "Volver";
+            btnVolver.UseVisualStyleBackColor = true;
+            btnVolver.Click += button3_Click;
             // 
             // FrmBitacora
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1036, 537);
-            Controls.Add(button3);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnVolver);
+            Controls.Add(lblCriticidad);
+            Controls.Add(lblHasta);
+            Controls.Add(lblDesde);
+            Controls.Add(lblUsuario);
+            Controls.Add(lblBitacora);
+            Controls.Add(btnLimpiar);
+            Controls.Add(btnBuscar);
             Controls.Add(dtpHasta);
             Controls.Add(dtpDesde);
             Controls.Add(cmbCriticidad);
@@ -181,6 +181,7 @@
             Controls.Add(dgvBitacora);
             Name = "FrmBitacora";
             Text = "FrmBitacora";
+            FormClosing += FrmBitacora_FormClosing;
             Load += FrmBitacora_Load_1;
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).EndInit();
             ResumeLayout(false);
@@ -194,13 +195,13 @@
         private ComboBox cmbCriticidad;
         private DateTimePicker dtpDesde;
         private DateTimePicker dtpHasta;
-        private Button button1;
-        private Button button2;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
-        private Button button3;
+        private Button btnBuscar;
+        private Button btnLimpiar;
+        private Label lblBitacora;
+        private Label lblUsuario;
+        private Label lblDesde;
+        private Label lblHasta;
+        private Label lblCriticidad;
+        private Button btnVolver;
     }
 }

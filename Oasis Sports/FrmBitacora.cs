@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
+using Servicios;
 
 namespace Oasis_Sports
 {
-    public partial class FrmBitacora : BaseForm
+    public partial class FrmBitacora : BaseForm, IObserverIdioma
     {
         BLL_Evento bllEvento = new BLL_Evento();
 
@@ -20,7 +21,25 @@ namespace Oasis_Sports
         public FrmBitacora()
         {
             InitializeComponent();
+            LanguageManager.GetInstance().Agregar(this);
         }
+
+        public void ActualizarIdioma()
+        {
+            if (this.InvokeRequired)
+                this.Invoke(new Action(() => LanguageManager.GetInstance().TraducirControles(this)));
+            else
+                LanguageManager.GetInstance().TraducirControles(this);
+        }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            if (this.Visible)
+                ActualizarIdioma();
+        }
+
+      
 
         private void CargarBitacora()
         {
@@ -56,13 +75,13 @@ namespace Oasis_Sports
 
             string filtro = "";
 
-            
+
             if (!string.IsNullOrWhiteSpace(txtUsuario.Text))
             {
                 filtro += $"Usuario LIKE '%{txtUsuario.Text}%'";
             }
 
-           
+
             if (cmbCriticidad.Text != "Todas")
             {
                 if (filtro != "")
@@ -71,7 +90,7 @@ namespace Oasis_Sports
                 filtro += $"Criticidad = {cmbCriticidad.Text}";
             }
 
-            
+
             if (filtro != "")
                 filtro += " AND ";
 
@@ -101,6 +120,12 @@ namespace Oasis_Sports
             FrmMenu frmMenu = new FrmMenu();
             frmMenu.Show();
             this.Hide();
+        }
+
+        private void FrmBitacora_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            LanguageManager.GetInstance().Quitar(this);
+
         }
     }
 }

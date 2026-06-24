@@ -27,13 +27,14 @@ namespace Oasis_Sports
             lblClave = new Label();
             lblTexto = new Label();
             lblNuevoIdioma = new Label();
-            button1 = new Button();
+            btnVolver = new Button();
+            lblIdioma = new Label();
             SuspendLayout();
             // 
             // cmbIdiomas
             // 
             cmbIdiomas.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbIdiomas.Location = new Point(20, 38);
+            cmbIdiomas.Location = new Point(20, 92);
             cmbIdiomas.Name = "cmbIdiomas";
             cmbIdiomas.Size = new Size(200, 29);
             cmbIdiomas.TabIndex = 5;
@@ -41,15 +42,15 @@ namespace Oasis_Sports
             // lstClaves
             // 
             lstClaves.ItemHeight = 21;
-            lstClaves.Location = new Point(20, 85);
+            lstClaves.Location = new Point(422, 92);
             lstClaves.Name = "lstClaves";
-            lstClaves.Size = new Size(270, 235);
+            lstClaves.Size = new Size(270, 361);
             lstClaves.TabIndex = 7;
             lstClaves.SelectedIndexChanged += lstClaves_SelectedIndexChanged;
             // 
             // txtClave
             // 
-            txtClave.Location = new Point(310, 85);
+            txtClave.Location = new Point(20, 145);
             txtClave.Name = "txtClave";
             txtClave.ReadOnly = true;
             txtClave.Size = new Size(340, 29);
@@ -57,21 +58,21 @@ namespace Oasis_Sports
             // 
             // txtTexto
             // 
-            txtTexto.Location = new Point(310, 135);
+            txtTexto.Location = new Point(20, 195);
             txtTexto.Name = "txtTexto";
             txtTexto.Size = new Size(340, 29);
             txtTexto.TabIndex = 9;
             // 
             // txtNuevoIdioma
             // 
-            txtNuevoIdioma.Location = new Point(20, 380);
+            txtNuevoIdioma.Location = new Point(20, 335);
             txtNuevoIdioma.Name = "txtNuevoIdioma";
             txtNuevoIdioma.Size = new Size(190, 29);
             txtNuevoIdioma.TabIndex = 12;
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(310, 175);
+            btnGuardar.Location = new Point(20, 239);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(180, 30);
             btnGuardar.TabIndex = 10;
@@ -80,7 +81,7 @@ namespace Oasis_Sports
             // 
             // btnNuevoIdioma
             // 
-            btnNuevoIdioma.Location = new Point(220, 377);
+            btnNuevoIdioma.Location = new Point(220, 332);
             btnNuevoIdioma.Name = "btnNuevoIdioma";
             btnNuevoIdioma.Size = new Size(130, 30);
             btnNuevoIdioma.TabIndex = 13;
@@ -89,7 +90,7 @@ namespace Oasis_Sports
             // 
             // btnCambiarIdioma
             // 
-            btnCambiarIdioma.Location = new Point(230, 36);
+            btnCambiarIdioma.Location = new Point(226, 91);
             btnCambiarIdioma.Name = "btnCambiarIdioma";
             btnCambiarIdioma.Size = new Size(190, 28);
             btnCambiarIdioma.TabIndex = 6;
@@ -98,11 +99,11 @@ namespace Oasis_Sports
             // 
             // btnRegistrarClaves
             // 
-            btnRegistrarClaves.Location = new Point(310, 220);
+            btnRegistrarClaves.Location = new Point(20, 288);
             btnRegistrarClaves.Name = "btnRegistrarClaves";
             btnRegistrarClaves.Size = new Size(279, 30);
             btnRegistrarClaves.TabIndex = 11;
-            btnRegistrarClaves.Text = "Auto-registrar claves de Login";
+            btnRegistrarClaves.Text = "Registrar claves";
             btnRegistrarClaves.Click += btnRegistrarClaves_Click;
             // 
             // lblIdiomaActivo
@@ -140,20 +141,31 @@ namespace Oasis_Sports
             lblNuevoIdioma.Size = new Size(100, 23);
             lblNuevoIdioma.TabIndex = 4;
             // 
-            // button1
+            // btnVolver
             // 
-            button1.Location = new Point(491, 343);
-            button1.Name = "button1";
-            button1.Size = new Size(98, 38);
-            button1.TabIndex = 14;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnVolver.Location = new Point(20, 405);
+            btnVolver.Name = "btnVolver";
+            btnVolver.Size = new Size(98, 38);
+            btnVolver.TabIndex = 14;
+            btnVolver.Text = "Volver";
+            btnVolver.UseVisualStyleBackColor = true;
+            btnVolver.Click += button1_Click;
+            // 
+            // lblIdioma
+            // 
+            lblIdioma.AutoSize = true;
+            lblIdioma.Font = new Font("Times New Roman", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblIdioma.Location = new Point(247, 25);
+            lblIdioma.Name = "lblIdioma";
+            lblIdioma.Size = new Size(197, 27);
+            lblIdioma.TabIndex = 15;
+            lblIdioma.Text = "Gestion de Idiomas";
             // 
             // FrmIdiomas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             ClientSize = new Size(700, 470);
+            Controls.Add(lblIdioma);
             Controls.Add(lstClaves);
             Controls.Add(lblIdiomaActivo);
             Controls.Add(lblClaves);
@@ -168,7 +180,7 @@ namespace Oasis_Sports
             Controls.Add(btnRegistrarClaves);
             Controls.Add(txtNuevoIdioma);
             Controls.Add(btnNuevoIdioma);
-            Controls.Add(button1);
+            Controls.Add(btnVolver);
             Name = "FrmIdiomas";
             Text = "Gestión de Idiomas";
             FormClosing += FrmIdiomas_FormClosing;
@@ -192,6 +204,7 @@ namespace Oasis_Sports
         private Label lblClave;
         private Label lblTexto;
         private Label lblNuevoIdioma;
-        private Button button1;
+        private Button btnVolver;
+        private Label lblIdioma;
     }
 }

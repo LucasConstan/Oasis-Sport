@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             treeView1 = new TreeView();
-            label1 = new Label();
+            lblPermisosActivos = new Label();
             cmbUsuarios = new ComboBox();
-            label2 = new Label();
+            lblUsuario = new Label();
             btnAgregar = new Button();
             btnQuitar = new Button();
             lstDisponibles = new ListBox();
-            button1 = new Button();
+            btnVolver = new Button();
             SuspendLayout();
             // 
             // treeView1
@@ -45,14 +45,14 @@
             treeView1.Size = new Size(465, 379);
             treeView1.TabIndex = 0;
             // 
-            // label1
+            // lblPermisosActivos
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(316, 18);
-            label1.Name = "label1";
-            label1.Size = new Size(189, 21);
-            label1.TabIndex = 1;
-            label1.Text = "PERMISOS ACTIVOS";
+            lblPermisosActivos.AutoSize = true;
+            lblPermisosActivos.Location = new Point(316, 18);
+            lblPermisosActivos.Name = "lblPermisosActivos";
+            lblPermisosActivos.Size = new Size(189, 21);
+            lblPermisosActivos.TabIndex = 1;
+            lblPermisosActivos.Text = "PERMISOS ACTIVOS";
             // 
             // cmbUsuarios
             // 
@@ -63,14 +63,14 @@
             cmbUsuarios.TabIndex = 2;
             cmbUsuarios.SelectedIndexChanged += cmbUsuarios_SelectedIndexChanged;
             // 
-            // label2
+            // lblUsuario
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(34, 53);
-            label2.Name = "label2";
-            label2.Size = new Size(76, 21);
-            label2.TabIndex = 3;
-            label2.Text = "Usuarios";
+            lblUsuario.AutoSize = true;
+            lblUsuario.Location = new Point(34, 53);
+            lblUsuario.Name = "lblUsuario";
+            lblUsuario.Size = new Size(76, 21);
+            lblUsuario.TabIndex = 3;
+            lblUsuario.Text = "Usuarios";
             // 
             // btnAgregar
             // 
@@ -101,31 +101,32 @@
             lstDisponibles.Size = new Size(197, 172);
             lstDisponibles.TabIndex = 6;
             // 
-            // button1
+            // btnVolver
             // 
-            button1.Location = new Point(32, 428);
-            button1.Name = "button1";
-            button1.Size = new Size(192, 43);
-            button1.TabIndex = 7;
-            button1.Text = "VOLVER";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnVolver.Location = new Point(32, 428);
+            btnVolver.Name = "btnVolver";
+            btnVolver.Size = new Size(192, 43);
+            btnVolver.TabIndex = 7;
+            btnVolver.Text = "VOLVER";
+            btnVolver.UseVisualStyleBackColor = true;
+            btnVolver.Click += button1_Click;
             // 
             // FrmGestionPerfiles
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 494);
-            Controls.Add(button1);
+            Controls.Add(btnVolver);
             Controls.Add(lstDisponibles);
             Controls.Add(btnQuitar);
             Controls.Add(btnAgregar);
-            Controls.Add(label2);
+            Controls.Add(lblUsuario);
             Controls.Add(cmbUsuarios);
-            Controls.Add(label1);
+            Controls.Add(lblPermisosActivos);
             Controls.Add(treeView1);
             Name = "FrmGestionPerfiles";
             Text = "FrmGestionPerfiles";
+            FormClosing += FrmGestionPerfiles_FormClosing;
             Load += FrmGestionPerfiles_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -134,12 +135,12 @@
         #endregion
 
         private TreeView treeView1;
-        private Label label1;
+        private Label lblPermisosActivos;
         private ComboBox cmbUsuarios;
-        private Label label2;
+        private Label lblUsuario;
         private Button btnAgregar;
         private Button btnQuitar;
         private ListBox lstDisponibles;
-        private Button button1;
+        private Button btnVolver;
     }
 }

@@ -30,11 +30,11 @@
         {
             textBox1 = new TextBox();
             textBox2 = new TextBox();
-            button1 = new Button();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            button2 = new Button();
+            btnIniciarSesion = new Button();
+            lblUsuario = new Label();
+            lblContraseña = new Label();
+            lblAlquilerCanchas = new Label();
+            btnVolver = new Button();
             pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -54,67 +54,67 @@
             textBox2.Size = new Size(221, 21);
             textBox2.TabIndex = 1;
             // 
-            // button1
+            // btnIniciarSesion
             // 
-            button1.BackColor = Color.White;
-            button1.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.DarkGreen;
-            button1.Location = new Point(230, 199);
-            button1.Name = "button1";
-            button1.Size = new Size(149, 35);
-            button1.TabIndex = 2;
-            button1.Text = "INICIAR SESION";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            btnIniciarSesion.BackColor = Color.White;
+            btnIniciarSesion.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnIniciarSesion.ForeColor = Color.DarkGreen;
+            btnIniciarSesion.Location = new Point(230, 199);
+            btnIniciarSesion.Name = "btnIniciarSesion";
+            btnIniciarSesion.Size = new Size(149, 35);
+            btnIniciarSesion.TabIndex = 2;
+            btnIniciarSesion.Text = "INICIAR SESION";
+            btnIniciarSesion.UseVisualStyleBackColor = false;
+            btnIniciarSesion.Click += button1_Click;
             // 
-            // label1
+            // lblUsuario
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.DarkGreen;
-            label1.Location = new Point(133, 114);
-            label1.Name = "label1";
-            label1.Size = new Size(61, 15);
-            label1.TabIndex = 3;
-            label1.Text = "USUARIO";
+            lblUsuario.AutoSize = true;
+            lblUsuario.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblUsuario.ForeColor = Color.DarkGreen;
+            lblUsuario.Location = new Point(133, 114);
+            lblUsuario.Name = "lblUsuario";
+            lblUsuario.Size = new Size(61, 15);
+            lblUsuario.TabIndex = 3;
+            lblUsuario.Text = "USUARIO";
             // 
-            // label2
+            // lblContraseña
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.DarkGreen;
-            label2.Location = new Point(107, 159);
-            label2.Name = "label2";
-            label2.Size = new Size(91, 15);
-            label2.TabIndex = 4;
-            label2.Text = "CONTRASEÑA";
+            lblContraseña.AutoSize = true;
+            lblContraseña.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblContraseña.ForeColor = Color.DarkGreen;
+            lblContraseña.Location = new Point(107, 159);
+            lblContraseña.Name = "lblContraseña";
+            lblContraseña.Size = new Size(91, 15);
+            lblContraseña.TabIndex = 4;
+            lblContraseña.Text = "CONTRASEÑA";
             // 
-            // label3
+            // lblAlquilerCanchas
             // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Times New Roman", 30F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Green;
-            label3.Location = new Point(61, 28);
-            label3.Name = "label3";
-            label3.Size = new Size(493, 47);
-            label3.TabIndex = 5;
-            label3.Text = "Alquiler de canchas de fútbol";
-            label3.TextAlign = ContentAlignment.TopCenter;
-            label3.Click += label3_Click;
+            lblAlquilerCanchas.AutoSize = true;
+            lblAlquilerCanchas.BackColor = Color.Transparent;
+            lblAlquilerCanchas.Font = new Font("Times New Roman", 30F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblAlquilerCanchas.ForeColor = Color.Green;
+            lblAlquilerCanchas.Location = new Point(61, 28);
+            lblAlquilerCanchas.Name = "lblAlquilerCanchas";
+            lblAlquilerCanchas.Size = new Size(493, 47);
+            lblAlquilerCanchas.TabIndex = 5;
+            lblAlquilerCanchas.Text = "Alquiler de canchas de fútbol";
+            lblAlquilerCanchas.TextAlign = ContentAlignment.TopCenter;
+            lblAlquilerCanchas.Click += label3_Click;
             // 
-            // button2
+            // btnVolver
             // 
-            button2.BackColor = Color.White;
-            button2.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.DarkGreen;
-            button2.Location = new Point(230, 240);
-            button2.Name = "button2";
-            button2.Size = new Size(149, 35);
-            button2.TabIndex = 6;
-            button2.Text = "VOLVER";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            btnVolver.BackColor = Color.White;
+            btnVolver.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnVolver.ForeColor = Color.DarkGreen;
+            btnVolver.Location = new Point(230, 240);
+            btnVolver.Name = "btnVolver";
+            btnVolver.Size = new Size(149, 35);
+            btnVolver.TabIndex = 6;
+            btnVolver.Text = "VOLVER";
+            btnVolver.UseVisualStyleBackColor = false;
+            btnVolver.Click += button2_Click;
             // 
             // pictureBox1
             // 
@@ -132,11 +132,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(224, 224, 224);
             ClientSize = new Size(630, 353);
-            Controls.Add(button2);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(button1);
+            Controls.Add(btnVolver);
+            Controls.Add(lblAlquilerCanchas);
+            Controls.Add(lblContraseña);
+            Controls.Add(lblUsuario);
+            Controls.Add(btnIniciarSesion);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(pictureBox1);
@@ -154,11 +154,11 @@
 
         private TextBox textBox1;
         private TextBox textBox2;
-        private Button button1;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Button button2;
+        private Button btnIniciarSesion;
+        private Label lblUsuario;
+        private Label lblContraseña;
+        private Label lblAlquilerCanchas;
+        private Button btnVolver;
         private PictureBox pictureBox1;
     }
 }

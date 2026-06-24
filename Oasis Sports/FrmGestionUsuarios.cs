@@ -14,14 +14,30 @@ using System.Windows.Forms;
 
 namespace Oasis_Sports
 {
-    public partial class FrmGestionUsuarios : BaseForm
+    public partial class FrmGestionUsuarios : BaseForm, IObserverIdioma
     {
         public FrmGestionUsuarios()
         {
             InitializeComponent();
+            LanguageManager.GetInstance().Agregar(this);
         }
 
         BLLUsuario bllUsuario = new BLLUsuario();
+
+        public void ActualizarIdioma()
+        {
+            if (this.InvokeRequired)
+                this.Invoke(new Action(() => LanguageManager.GetInstance().TraducirControles(this)));
+            else
+                LanguageManager.GetInstance().TraducirControles(this);
+        }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            if (this.Visible)
+                ActualizarIdioma();
+        }
 
         private void btnAñadir_Click(object sender, EventArgs e)
         {
@@ -35,13 +51,13 @@ namespace Oasis_Sports
                 BLL_Evento bllEvento = new BLL_Evento();
 
                 bllEvento.RegistrarEvento(new Evento()
-                    {
-                        Usuario = SessionManager.GetInstance().Usuario.Username,
-                        Modulo = "Usuarios",
-                        Descripcion = "Alta de usuario: " + usuario.Username,
-                        Fecha = DateTime.Now,
-                        Criticidad = 2
-                    });
+                {
+                    Usuario = SessionManager.GetInstance().Usuario.Username,
+                    Modulo = "Usuarios",
+                    Descripcion = "Alta de usuario: " + usuario.Username,
+                    Fecha = DateTime.Now,
+                    Criticidad = 2
+                });
                 dataGridView1.DataSource = bllUsuario.Listar();
 
                 MessageBox.Show("Usuario añadido correctamente");
@@ -78,13 +94,13 @@ namespace Oasis_Sports
                 BLL_Evento bllEvento = new BLL_Evento();
 
                 bllEvento.RegistrarEvento(new Evento()
-                    {
-                        Usuario = SessionManager.GetInstance().Usuario.Username,
-                        Modulo = "Usuarios",
-                        Descripcion = "Eliminación de usuario",
-                        Fecha = DateTime.Now,
-                        Criticidad = 3
-                    });
+                {
+                    Usuario = SessionManager.GetInstance().Usuario.Username,
+                    Modulo = "Usuarios",
+                    Descripcion = "Eliminación de usuario",
+                    Fecha = DateTime.Now,
+                    Criticidad = 3
+                });
                 dataGridView1.DataSource = bllUsuario.Listar();
 
                 txtUsuario.Clear();
@@ -129,13 +145,13 @@ namespace Oasis_Sports
                 BLL_Evento bllEvento = new BLL_Evento();
 
                 bllEvento.RegistrarEvento(new Evento()
-                    {
-                        Usuario = SessionManager.GetInstance().Usuario.Username,
-                        Modulo = "Usuarios",
-                        Descripcion = "Modificación de usuario: " + usuario.Username,
-                        Fecha = DateTime.Now,
-                        Criticidad = 2
-                    });
+                {
+                    Usuario = SessionManager.GetInstance().Usuario.Username,
+                    Modulo = "Usuarios",
+                    Descripcion = "Modificación de usuario: " + usuario.Username,
+                    Fecha = DateTime.Now,
+                    Criticidad = 2
+                });
                 dataGridView1.DataSource = bllUsuario.Listar();
 
                 MessageBox.Show("El Usuario fue modificado con exito");
@@ -145,6 +161,12 @@ namespace Oasis_Sports
             {
                 MessageBox.Show("Seleccione un usuario en la grilla");
             }
+        }
+
+        private void FrmGestionUsuarios_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            LanguageManager.GetInstance().Quitar(this);
+
         }
     }
 }

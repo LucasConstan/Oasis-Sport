@@ -110,7 +110,25 @@ namespace Oasis_Sports
             RegistrarClavesDeControl(temp.Controls, (int)cmbIdiomas.SelectedValue);
             temp.Dispose();
 
-            MessageBox.Show("Claves registradas desde FrmLogin.");
+            FrmGestionUsuarios tempUsuarios = new FrmGestionUsuarios();
+            RegistrarClavesDeControl(tempUsuarios.Controls, (int)cmbIdiomas.SelectedValue);
+            tempUsuarios.Dispose();
+
+            FrmBitacora tempBitacora = new FrmBitacora();
+            RegistrarClavesDeControl(tempBitacora.Controls, (int)cmbIdiomas.SelectedValue);
+            tempBitacora.Dispose();
+
+            FrmGestionPerfiles tempGestionPerfiles = new FrmGestionPerfiles();
+            RegistrarClavesDeControl(tempGestionPerfiles.Controls, (int)cmbIdiomas.SelectedValue);
+            tempGestionPerfiles.Dispose();
+
+            FrmMenu tempMenu = new FrmMenu();
+            RegistrarClavesDeControl(tempMenu.Controls, (int) cmbIdiomas.SelectedValue);
+            tempMenu.Dispose();
+
+
+
+            MessageBox.Show("Claves registradas correctamente.");
             CargarClaves();
         }
 

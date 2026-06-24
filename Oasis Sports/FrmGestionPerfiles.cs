@@ -13,17 +13,31 @@ using Servicios;
 
 namespace Oasis_Sports
 {
-    public partial class FrmGestionPerfiles : BaseForm
+    public partial class FrmGestionPerfiles : BaseForm, IObserverIdioma
     {
         public FrmGestionPerfiles()
         {
             InitializeComponent();
+            LanguageManager.GetInstance().Agregar(this);
         }
 
         private BLL_Permisos permisoBLL = new BLL_Permisos();
         private BLLUsuario usuarioBLL = new BLLUsuario();
 
+        public void ActualizarIdioma()
+        {
+            if (this.InvokeRequired)
+                this.Invoke(new Action(() => LanguageManager.GetInstance().TraducirControles(this)));
+            else
+                LanguageManager.GetInstance().TraducirControles(this);
+        }
 
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            if (this.Visible)
+                ActualizarIdioma();
+        }
 
 
 
@@ -144,6 +158,12 @@ namespace Oasis_Sports
             FrmMenu frmMenu = new FrmMenu();
             frmMenu.Show();
             this.Hide();
+        }
+
+        private void FrmGestionPerfiles_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            LanguageManager.GetInstance().Quitar(this);
+
         }
     }
 
