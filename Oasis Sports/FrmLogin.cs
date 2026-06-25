@@ -24,17 +24,17 @@ namespace Oasis_Sports
             LanguageManager.GetInstance().Agregar(this);
         }
 
-        
+
         public void ActualizarIdioma()
         {
-            
+
             if (this.InvokeRequired)
                 this.Invoke(new Action(() => LanguageManager.GetInstance().TraducirControles(this)));
             else
                 LanguageManager.GetInstance().TraducirControles(this);
         }
 
-      
+
         protected override void OnVisibleChanged(EventArgs e)
         {
             base.OnVisibleChanged(e);
@@ -47,7 +47,7 @@ namespace Oasis_Sports
             LanguageManager.GetInstance().Quitar(this);
         }
 
-       
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -76,14 +76,17 @@ namespace Oasis_Sports
 
                 bllEvento.RegistrarEvento(new Evento()
                 {
-                    Usuario     = user.Username,
-                    Modulo      = "Login",
+                    Usuario = user.Username,
+                    Modulo = "Login",
                     Descripcion = "Inicio de sesión",
-                    Fecha       = DateTime.Now,
-                    Criticidad  = 1
+                    Fecha = DateTime.Now,
+                    Criticidad = 1
                 });
 
                 MessageBox.Show("Bienvenido " + user.Username);
+
+                FrmSeleccionIdioma frmIdioma = new FrmSeleccionIdioma();
+                frmIdioma.ShowDialog(); // espera a que se cierre
 
                 FrmMenu menu = new FrmMenu();
                 menu.Show();
@@ -95,11 +98,11 @@ namespace Oasis_Sports
 
                 bllEvento.RegistrarEvento(new Evento()
                 {
-                    Usuario     = textBox1.Text,
-                    Modulo      = "Login",
+                    Usuario = textBox1.Text,
+                    Modulo = "Login",
                     Descripcion = "Intento fallido",
-                    Fecha       = DateTime.Now,
-                    Criticidad  = 3
+                    Fecha = DateTime.Now,
+                    Criticidad = 3
                 });
 
                 MessageBox.Show(ex.Message);
@@ -115,5 +118,10 @@ namespace Oasis_Sports
         private void pictureBox1_Click(object sender, EventArgs e) { }
 
         private void label3_Click(object sender, EventArgs e) { }
+
+        private void FrmLogin_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+            LanguageManager.GetInstance().Quitar(this);
+        }
     }
 }

@@ -144,6 +144,7 @@
             ForeColor = Color.Transparent;
             Name = "FrmLogin";
             Text = "FrmLogin";
+            FormClosing += FrmLogin_FormClosing_1;
             Load += FrmLogin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
