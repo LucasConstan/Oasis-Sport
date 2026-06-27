@@ -210,5 +210,46 @@ namespace DAL
 
             return permisos;
         }
+
+        public int CrearGrupoPermiso(string nombre)
+        {
+            using (SqlConnection cn = new Conexion().ObtenerConexion())
+            {
+                cn.Open();
+
+                string query = @" INSERT INTO Permiso (Nombre, Codigo, EsGrupo) OUTPUT INSERTED.Id VALUES (@Nombre, NULL, 1)";
+
+                using (SqlCommand comando = new SqlCommand(query, cn))
+                {
+                    comando.Parameters.AddWithValue("@Nombre", nombre);
+
+                    return Convert.ToInt32(comando.ExecuteScalar());
+                }
+            }
+        }
+
+        public void AgregarPermisoAGrupo(int grupoId, int permisoHijoId)
+        {
+            using (SqlConnection cn = new Conexion().ObtenerConexion())
+            {
+                cn.Open();
+
+                string query = @" IF NOT EXISTS (SELECT 1 FROM PermisoRelacion
+                WHERE PadreId = @PadreId AND HijoId = @HijoId
+            )
+            BEGIN
+                INSERT INTO PermisoRelacion (PadreId, HijoId)
+                VALUES (@PadreId, @HijoId)
+            END";
+
+                using (SqlCommand comando = new SqlCommand(query, cn))
+                {
+                    comando.Parameters.AddWithValue("@PadreId", grupoId);
+                    comando.Parameters.AddWithValue("@HijoId", permisoHijoId);
+
+                    comando.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

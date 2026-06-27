@@ -65,6 +65,22 @@ namespace BLL
             return permisoDAL.ObtenerTodos();
         }
 
-       
+        public int CrearGrupoPermiso(string nombre)
+        {
+            if (string.IsNullOrWhiteSpace(nombre))
+                throw new Exception("Debe ingresar un nombre para el grupo.");
+
+            return permisoDAL.CrearGrupoPermiso(nombre);
+        }
+
+        public void AgregarPermisoAGrupo(int grupoId, int permisoHijoId)
+        {
+            if (grupoId == permisoHijoId)
+                throw new Exception("Un grupo no puede contenerse a sí mismo.");
+
+            permisoDAL.AgregarPermisoAGrupo(grupoId, permisoHijoId);
+        }
+
+
     }
 }

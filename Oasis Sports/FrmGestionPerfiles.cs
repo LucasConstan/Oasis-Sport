@@ -165,6 +165,13 @@ namespace Oasis_Sports
             LanguageManager.GetInstance().Quitar(this);
 
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            FrmGruposPermisos frmGruposPermisos = new FrmGruposPermisos();
+            frmGruposPermisos.Show();
+            this.Close();
+        }
     }
 
 

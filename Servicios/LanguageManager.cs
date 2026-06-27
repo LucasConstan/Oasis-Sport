@@ -29,7 +29,7 @@ namespace Servicios
             "Encrypt=True;" +
             "TrustServerCertificate=True;";
 
-        // ── Estado interno ─────────────────────────────────────────────────────
+        
         private int idIdiomaActual = 1;
         private List<Traduccion> traducciones = new List<Traduccion>();
         private List<IObserverIdioma> observadores = new List<IObserverIdioma>();
