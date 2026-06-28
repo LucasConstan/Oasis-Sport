@@ -73,3 +73,12 @@ SELECT Id FROM Permiso WHERE Codigo = 'GID';
 -- Reemplazar el 5 por el id que devuelva el SELECT anterior
 INSERT INTO UsuarioPermiso (UsuarioId, PermisoId) VALUES (1, 5);
 
+ALTER TABLE Usuarios ADD DVH INT NOT NULL DEFAULT 0;
+
+CREATE TABLE DVVertical (
+    Tabla    VARCHAR(50) PRIMARY KEY,
+    ValorDVV INT NOT NULL DEFAULT 0
+);
+
+INSERT INTO DVVertical (Tabla, ValorDVV) VALUES ('Usuarios', 0);
+
