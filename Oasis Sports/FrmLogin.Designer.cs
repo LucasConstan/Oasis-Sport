@@ -36,6 +36,7 @@
             lblAlquilerCanchas = new Label();
             btnVolver = new Button();
             pictureBox1 = new PictureBox();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -126,12 +127,25 @@
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
             // 
+            // button1
+            // 
+            button1.BackColor = Color.Transparent;
+            button1.ForeColor = Color.DarkGreen;
+            button1.Location = new Point(550, 5);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 8;
+            button1.Text = "Idioma";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click_1;
+            // 
             // FrmLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(224, 224, 224);
             ClientSize = new Size(630, 353);
+            Controls.Add(button1);
             Controls.Add(btnVolver);
             Controls.Add(lblAlquilerCanchas);
             Controls.Add(lblContraseña);
@@ -161,5 +175,6 @@
         private Label lblAlquilerCanchas;
         private Button btnVolver;
         private PictureBox pictureBox1;
+        private Button button1;
     }
 }

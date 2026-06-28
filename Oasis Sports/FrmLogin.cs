@@ -1,4 +1,5 @@
 using BLL;
+using DAL;
 using Entidades;
 using Servicios;
 using System;
@@ -66,6 +67,33 @@ namespace Oasis_Sports
                 return;
             }
 
+            //bllUsuario.InicializarDVs();  //Solo para la primera vez que se usa
+
+            if (!bllUsuario.VerificarIntegridad())
+            {
+                DialogResult resultado = MessageBox.Show(
+                    "Se detectó una alteración en los datos.\n¿Desea recalcular los dígitos verificadores?",
+                    "Error de integridad",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    DAL_Usuario dal = new DAL_Usuario();
+                    dal.InicializarDVs();
+
+                    MessageBox.Show(
+                        "Dígitos verificadores recalculados correctamente.",
+                        "Éxito",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                else
+                {
+                    return; 
+                }
+            }
+
             try
             {
                 Usuario user = bllUsuario.ValidarUsuario(textBox1.Text, textBox2.Text);
@@ -83,10 +111,13 @@ namespace Oasis_Sports
                     Criticidad = 1
                 });
 
+                
+
                 MessageBox.Show("Bienvenido " + user.Username);
 
-                FrmSeleccionIdioma frmIdioma = new FrmSeleccionIdioma();
-                frmIdioma.ShowDialog(); // espera a que se cierre
+
+
+                
 
                 FrmMenu menu = new FrmMenu();
                 menu.Show();
@@ -122,6 +153,12 @@ namespace Oasis_Sports
         private void FrmLogin_FormClosing_1(object sender, FormClosingEventArgs e)
         {
             LanguageManager.GetInstance().Quitar(this);
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            FrmSeleccionIdioma frmIdioma = new FrmSeleccionIdioma();
+            frmIdioma.ShowDialog();
         }
     }
 }

@@ -94,7 +94,6 @@ namespace Servicios
             }
         }
 
-        // ── Obtener texto por clave ────────────────────────────────────────────
         public string ObtenerTexto(string clave)
         {
             if (traducciones.Count == 0)
