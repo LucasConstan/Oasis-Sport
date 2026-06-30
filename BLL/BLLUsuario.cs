@@ -21,9 +21,20 @@ namespace BLL
             DAL_Usuario.AñadirUsuario(usuario);
         }
 
-        public void ModificarUsuario(int idUsuario, Usuario usuario)
+        public void ModificarUsuario(int idUsuario, Usuario usuarioNuevo)
         {
-            DAL_Usuario.ModificarUsuario(idUsuario, usuario);
+            
+            Usuario usuarioAntes = DAL_Usuario.ObtenerPorUsuario(
+                DAL_Usuario.Listar().FirstOrDefault(u => u.Id == idUsuario)?.Username ?? ""
+            );          
+            DAL_Usuario.ModificarUsuario(idUsuario, usuarioNuevo);         
+            if (usuarioAntes != null)
+            {
+                usuarioNuevo.Id = idUsuario;
+                BLL_HistorialCambios bllHistorial = new BLL_HistorialCambios();
+                string quienModifica = Servicios.SessionManager.GetInstance().Usuario?.Username ?? "sistema";
+                bllHistorial.RegistrarCambiosUsuario(usuarioAntes, usuarioNuevo, quienModifica);
+            }
         }
 
         public void EliminarUsuario(int idUsuario)

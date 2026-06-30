@@ -142,8 +142,8 @@ namespace Oasis_Sports
                 };
 
                 bllUsuario.ModificarUsuario(idUsuarioSeleccionado, usuario);
-                BLL_Evento bllEvento = new BLL_Evento();
 
+                BLL_Evento bllEvento = new BLL_Evento();
                 bllEvento.RegistrarEvento(new Evento()
                 {
                     Usuario = SessionManager.GetInstance().Usuario.Username,
@@ -152,11 +152,16 @@ namespace Oasis_Sports
                     Fecha = DateTime.Now,
                     Criticidad = 2
                 });
+
                 dataGridView1.DataSource = bllUsuario.Listar();
+                MessageBox.Show("El Usuario fue modificado con éxito");
+                txtUsuario.Clear();
+                txtContraseña.Clear();
+                txtContraseñaRepetida.Clear();
 
-                MessageBox.Show("El Usuario fue modificado con exito");
+                FrmHistorialCambios frm = new FrmHistorialCambios(idUsuarioSeleccionado, usuario.Username);
+                frm.ShowDialog();
             }
-
             else
             {
                 MessageBox.Show("Seleccione un usuario en la grilla");

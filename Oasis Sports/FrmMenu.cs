@@ -13,27 +13,27 @@ using System.Windows.Forms;
 
 namespace Oasis_Sports
 {
-    public partial class FrmMenu : BaseForm, IObserverIdioma   
+    public partial class FrmMenu : BaseForm, IObserverIdioma
     {
         public FrmMenu()
         {
             InitializeComponent();
-            LanguageManager.GetInstance().Agregar(this);       
+            LanguageManager.GetInstance().Agregar(this);
         }
 
-        
+
         public void ActualizarIdioma()
         {
             LanguageManager.GetInstance().TraducirControles(this);
         }
 
-        
+
         private void FrmMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
             LanguageManager.GetInstance().Quitar(this);
         }
 
-        
+
 
         private void lOGINToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -58,11 +58,11 @@ namespace Oasis_Sports
 
                     bllEvento.RegistrarEvento(new Evento()
                     {
-                        Usuario     = SessionManager.GetInstance().Usuario.Username,
-                        Modulo      = "Login",
+                        Usuario = SessionManager.GetInstance().Usuario.Username,
+                        Modulo = "Login",
                         Descripcion = "Cierre de sesión",
-                        Fecha       = DateTime.Now,
-                        Criticidad  = 1
+                        Fecha = DateTime.Now,
+                        Criticidad = 1
                     });
 
                     SessionManager.GetInstance().Logout();
@@ -99,23 +99,27 @@ namespace Oasis_Sports
 
         private void OcultarControles()
         {
-            bitacoraToolStripMenuItem.Visible         = false;
-            bITACORAToolStripMenuItem1.Visible        = false;
+            bitacoraToolStripMenuItem.Visible = false;
+            bITACORAToolStripMenuItem1.Visible = false;
             gESTIONDEUSUARIOSToolStripMenuItem.Visible = false;
             gESTIONDEPERFILESToolStripMenuItem.Visible = false;
             gESTIONDERESERVASToolStripMenuItem.Visible = false;
-            gESTIONDEIDIOMASToolStripMenuItem.Visible  = false;  
+            gESTIONDEIDIOMASToolStripMenuItem.Visible = false;
+            bITACORADECAMBIOSToolStripMenuItem.Visible = false;
+
         }
 
         private void AplicarPermisos()
         {
             if (SessionManager.GetInstance().IsLogged())
             {
-                bITACORAToolStripMenuItem1.Visible         = permisoBLL.UsuarioTienePermiso(SessionManager.GetInstance().Usuario.Id, "BTE");
+                bITACORAToolStripMenuItem1.Visible = permisoBLL.UsuarioTienePermiso(SessionManager.GetInstance().Usuario.Id, "BTE");
                 gESTIONDEUSUARIOSToolStripMenuItem.Visible = permisoBLL.UsuarioTienePermiso(SessionManager.GetInstance().Usuario.Id, "GUS");
                 gESTIONDERESERVASToolStripMenuItem.Visible = permisoBLL.UsuarioTienePermiso(SessionManager.GetInstance().Usuario.Id, "GRE");
                 gESTIONDEPERFILESToolStripMenuItem.Visible = permisoBLL.UsuarioTienePermiso(SessionManager.GetInstance().Usuario.Id, "GPE");
-                gESTIONDEIDIOMASToolStripMenuItem.Visible  = permisoBLL.UsuarioTienePermiso(SessionManager.GetInstance().Usuario.Id, "GID"); 
+                gESTIONDEIDIOMASToolStripMenuItem.Visible = permisoBLL.UsuarioTienePermiso(SessionManager.GetInstance().Usuario.Id, "GID");
+                bITACORADECAMBIOSToolStripMenuItem.Visible = permisoBLL.UsuarioTienePermiso(SessionManager.GetInstance().Usuario.Id, "BDC");
+
 
                 bitacoraToolStripMenuItem.Visible = true;
             }
@@ -142,5 +146,15 @@ namespace Oasis_Sports
         }
 
         private BLL_Permisos permisoBLL = new BLL_Permisos();
+
+        private void bITACORADECAMBIOSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmHistorialCambios frm = new FrmHistorialCambios(
+           SessionManager.GetInstance().Usuario.Id,
+           SessionManager.GetInstance().Usuario.Username);
+
+            frm.ShowDialog();
+        }
+      
     }
 }

@@ -24,41 +24,47 @@ namespace Oasis_Sports
             bITACORAToolStripMenuItem1 = new ToolStripMenuItem();
             gESTIONDEUSUARIOSToolStripMenuItem = new ToolStripMenuItem();
             gESTIONDEPERFILESToolStripMenuItem = new ToolStripMenuItem();
+            bITACORADECAMBIOSToolStripMenuItem = new ToolStripMenuItem();
             gESTIONDERESERVASToolStripMenuItem = new ToolStripMenuItem();
-            gESTIONDEIDIOMASToolStripMenuItem = new ToolStripMenuItem();   // ← nuevo
+            gESTIONDEIDIOMASToolStripMenuItem = new ToolStripMenuItem();
             sALIRToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
-
+            // 
             // menuStrip1
+            // 
             menuStrip1.Items.AddRange(new ToolStripItem[] { uSUARIOToolStripMenuItem, bitacoraToolStripMenuItem, gESTIONDERESERVASToolStripMenuItem, gESTIONDEIDIOMASToolStripMenuItem, sALIRToolStripMenuItem });
             menuStrip1.Location = new Point(2, 2);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(796, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
-
+            // 
             // uSUARIOToolStripMenuItem
+            // 
             uSUARIOToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { lOGINToolStripMenuItem, lOGOUTToolStripMenuItem });
             uSUARIOToolStripMenuItem.Font = new Font("Times New Roman", 10F);
             uSUARIOToolStripMenuItem.Name = "uSUARIOToolStripMenuItem";
             uSUARIOToolStripMenuItem.Size = new Size(78, 20);
             uSUARIOToolStripMenuItem.Text = "USUARIO";
-
+            // 
             // lOGINToolStripMenuItem
+            // 
             lOGINToolStripMenuItem.Name = "lOGINToolStripMenuItem";
-            lOGINToolStripMenuItem.Size = new Size(130, 22);
+            lOGINToolStripMenuItem.Size = new Size(180, 22);
             lOGINToolStripMenuItem.Text = "LOGIN";
             lOGINToolStripMenuItem.Click += lOGINToolStripMenuItem_Click;
-
+            // 
             // lOGOUTToolStripMenuItem
+            // 
             lOGOUTToolStripMenuItem.Name = "lOGOUTToolStripMenuItem";
-            lOGOUTToolStripMenuItem.Size = new Size(130, 22);
+            lOGOUTToolStripMenuItem.Size = new Size(180, 22);
             lOGOUTToolStripMenuItem.Text = "LOGOUT";
             lOGOUTToolStripMenuItem.Click += lOGOUTToolStripMenuItem_Click;
-
-            // bitacoraToolStripMenuItem  (menú ADMIN)
-            bitacoraToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { bITACORAToolStripMenuItem1, gESTIONDEUSUARIOSToolStripMenuItem, gESTIONDEPERFILESToolStripMenuItem });
+            // 
+            // bitacoraToolStripMenuItem
+            // 
+            bitacoraToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { bITACORAToolStripMenuItem1, gESTIONDEUSUARIOSToolStripMenuItem, gESTIONDEPERFILESToolStripMenuItem, bITACORADECAMBIOSToolStripMenuItem });
             bitacoraToolStripMenuItem.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
             bitacoraToolStripMenuItem.Size = new Size(63, 20);
@@ -66,48 +72,62 @@ namespace Oasis_Sports
             bitacoraToolStripMenuItem.Visible = false;
             bitacoraToolStripMenuItem.Click += bitacoraToolStripMenuItem_Click;
             bitacoraToolStripMenuItem.VisibleChanged += bitacoraToolStripMenuItem_VisibleChanged;
-
+            // 
             // bITACORAToolStripMenuItem1
+            // 
             bITACORAToolStripMenuItem1.Name = "bITACORAToolStripMenuItem1";
-            bITACORAToolStripMenuItem1.Size = new Size(214, 22);
+            bITACORAToolStripMenuItem1.Size = new Size(217, 22);
             bITACORAToolStripMenuItem1.Text = "BITACORA DE EVENTOS";
             bITACORAToolStripMenuItem1.Click += bITACORAToolStripMenuItem1_Click;
-
+            // 
             // gESTIONDEUSUARIOSToolStripMenuItem
+            // 
             gESTIONDEUSUARIOSToolStripMenuItem.Name = "gESTIONDEUSUARIOSToolStripMenuItem";
-            gESTIONDEUSUARIOSToolStripMenuItem.Size = new Size(214, 22);
+            gESTIONDEUSUARIOSToolStripMenuItem.Size = new Size(217, 22);
             gESTIONDEUSUARIOSToolStripMenuItem.Text = "GESTION DE USUARIOS";
             gESTIONDEUSUARIOSToolStripMenuItem.Click += gESTIONDEUSUARIOSToolStripMenuItem_Click;
-
+            // 
             // gESTIONDEPERFILESToolStripMenuItem
+            // 
             gESTIONDEPERFILESToolStripMenuItem.Name = "gESTIONDEPERFILESToolStripMenuItem";
-            gESTIONDEPERFILESToolStripMenuItem.Size = new Size(214, 22);
+            gESTIONDEPERFILESToolStripMenuItem.Size = new Size(217, 22);
             gESTIONDEPERFILESToolStripMenuItem.Text = "GESTION DE PERFILES";
             gESTIONDEPERFILESToolStripMenuItem.Click += gESTIONDEPERFILESToolStripMenuItem_Click;
-
+            // 
+            // bITACORADECAMBIOSToolStripMenuItem
+            // 
+            bITACORADECAMBIOSToolStripMenuItem.Name = "bITACORADECAMBIOSToolStripMenuItem";
+            bITACORADECAMBIOSToolStripMenuItem.Size = new Size(217, 22);
+            bITACORADECAMBIOSToolStripMenuItem.Text = "BITACORA DE CAMBIOS";
+            bITACORADECAMBIOSToolStripMenuItem.Click += bITACORADECAMBIOSToolStripMenuItem_Click;
+            // 
             // gESTIONDERESERVASToolStripMenuItem
+            // 
             gESTIONDERESERVASToolStripMenuItem.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             gESTIONDERESERVASToolStripMenuItem.Name = "gESTIONDERESERVASToolStripMenuItem";
             gESTIONDERESERVASToolStripMenuItem.Size = new Size(149, 20);
             gESTIONDERESERVASToolStripMenuItem.Text = "GESTION DE RESERVAS";
             gESTIONDERESERVASToolStripMenuItem.Visible = false;
-
-            // gESTIONDEIDIOMASToolStripMenuItem  ← NUEVO
+            // 
+            // gESTIONDEIDIOMASToolStripMenuItem
+            // 
             gESTIONDEIDIOMASToolStripMenuItem.Font = new Font("Times New Roman", 10F);
             gESTIONDEIDIOMASToolStripMenuItem.Name = "gESTIONDEIDIOMASToolStripMenuItem";
-            gESTIONDEIDIOMASToolStripMenuItem.Size = new Size(149, 20);
+            gESTIONDEIDIOMASToolStripMenuItem.Size = new Size(78, 20);
             gESTIONDEIDIOMASToolStripMenuItem.Text = "IDIOMAS";
             gESTIONDEIDIOMASToolStripMenuItem.Visible = false;
             gESTIONDEIDIOMASToolStripMenuItem.Click += gESTIONDEIDIOMASToolStripMenuItem_Click;
-
+            // 
             // sALIRToolStripMenuItem
+            // 
             sALIRToolStripMenuItem.Font = new Font("Times New Roman", 10F);
             sALIRToolStripMenuItem.Name = "sALIRToolStripMenuItem";
             sALIRToolStripMenuItem.Size = new Size(58, 20);
             sALIRToolStripMenuItem.Text = "SALIR";
             sALIRToolStripMenuItem.Click += sALIRToolStripMenuItem_Click;
-
+            // 
             // FrmMenu
+            // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(224, 224, 224);
@@ -119,8 +139,8 @@ namespace Oasis_Sports
             MainMenuStrip = menuStrip1;
             Name = "FrmMenu";
             Text = "FrmMenu";
+            FormClosing += FrmMenu_FormClosing;
             Load += FrmMenu_Load;
-            FormClosing += FrmMenu_FormClosing;   // ← nuevo evento
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -140,5 +160,6 @@ namespace Oasis_Sports
         private ToolStripMenuItem gESTIONDEPERFILESToolStripMenuItem;
         private ToolStripMenuItem gESTIONDERESERVASToolStripMenuItem;
         private ToolStripMenuItem gESTIONDEIDIOMASToolStripMenuItem;   // ← nuevo
+        private ToolStripMenuItem bITACORADECAMBIOSToolStripMenuItem;
     }
 }
