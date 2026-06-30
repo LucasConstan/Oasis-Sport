@@ -82,3 +82,15 @@ CREATE TABLE DVVertical (
 
 INSERT INTO DVVertical (Tabla, ValorDVV) VALUES ('Usuarios', 0);
 
+CREATE TABLE HistorialCambios (
+    IdHistorial   INT IDENTITY PRIMARY KEY,
+    EntidadId     INT,
+    NombreEntidad VARCHAR(50),
+    NombreCampo   VARCHAR(100),
+    ValorAnterior VARCHAR(200),
+    ValorNuevo    VARCHAR(200),
+    Usuario       VARCHAR(50),
+    Fecha         DATETIME
+);
+
+INSERT INTO Permiso (Nombre, Codigo, EsGrupo) VALUES ('Gestion de idiomas', 'BDC', 0);
