@@ -93,4 +93,4 @@ CREATE TABLE HistorialCambios (
     Fecha         DATETIME
 );
 
-INSERT INTO Permiso (Nombre, Codigo, EsGrupo) VALUES ('Gestion de idiomas', 'BDC', 0);
+INSERT INTO Permiso (Nombre, Codigo, EsGrupo) VALUES ('Gestion de cambios', 'BDC', 0);
