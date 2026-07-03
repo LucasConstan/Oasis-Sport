@@ -23,6 +23,7 @@ namespace Oasis_Sports
         }
 
         BLLUsuario bllUsuario = new BLLUsuario();
+        ValidadorDeIntegridad Validador = new ValidadorDeIntegridad();
 
         public void ActualizarIdioma()
         {
@@ -61,6 +62,8 @@ namespace Oasis_Sports
                 dataGridView1.DataSource = bllUsuario.Listar();
 
                 MessageBox.Show("Usuario añadido correctamente");
+
+                bllUsuario.InicializarDVs();
             }
 
             else
@@ -107,7 +110,7 @@ namespace Oasis_Sports
                 txtContraseña.Clear();
 
                 MessageBox.Show("El Usuario fue eliminado con exito");
-
+                bllUsuario.InicializarDVs();
                 idUsuarioSeleccionado = 0;
             }
 
@@ -158,6 +161,8 @@ namespace Oasis_Sports
                 txtUsuario.Clear();
                 txtContraseña.Clear();
                 txtContraseñaRepetida.Clear();
+
+                bllUsuario.InicializarDVs();
 
                 FrmHistorialCambios frm = new FrmHistorialCambios(idUsuarioSeleccionado, usuario.Username);
                 frm.ShowDialog();

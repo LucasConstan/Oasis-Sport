@@ -79,8 +79,7 @@ namespace Oasis_Sports
 
                 if (resultado == DialogResult.Yes)
                 {
-                    DAL_Usuario dal = new DAL_Usuario();
-                    dal.InicializarDVs();
+                    bllUsuario.InicializarDVs();
 
                     MessageBox.Show(
                         "Dígitos verificadores recalculados correctamente.",
