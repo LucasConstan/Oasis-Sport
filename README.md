@@ -94,3 +94,7 @@ CREATE TABLE HistorialCambios (
 );
 
 INSERT INTO Permiso (Nombre, Codigo, EsGrupo) VALUES ('Gestion de cambios', 'BDC', 0);
+
+INSERT INTO usuarios(nomUsuario, contraseña) VALUES ('user', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3');
+
+INSERT INTO UsuarioPermiso( UsuarioId,PermisoId) VALUES (1,3)
