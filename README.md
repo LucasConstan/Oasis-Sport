@@ -98,3 +98,31 @@ INSERT INTO Permiso (Nombre, Codigo, EsGrupo) VALUES ('Gestion de cambios', 'BDC
 INSERT INTO usuarios(nomUsuario, contraseña) VALUES ('user', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3');
 
 INSERT INTO UsuarioPermiso( UsuarioId,PermisoId) VALUES (1,3)
+
+-- Español (IdIdioma = 1)
+INSERT INTO Traduccion (IdIdioma, Clave, Texto) VALUES
+(1, 'uSUARIOToolStripMenuItem',             'USUARIO'),
+(1, 'lOGINToolStripMenuItem',              'LOGIN'),
+(1, 'lOGOUTToolStripMenuItem',             'LOGOUT'),
+(1, 'bitacoraToolStripMenuItem',           'ADMIN'),
+(1, 'bITACORAToolStripMenuItem1',          'BITACORA DE EVENTOS'),
+(1, 'gESTIONDEUSUARIOSToolStripMenuItem',  'GESTION DE USUARIOS'),
+(1, 'gESTIONDEPERFILESToolStripMenuItem',  'GESTION DE PERFILES'),
+(1, 'bITACORADECAMBIOSToolStripMenuItem',  'BITACORA DE CAMBIOS'),
+(1, 'gESTIONDERESERVASToolStripMenuItem',  'GESTION DE RESERVAS'),
+(1, 'gESTIONDEIDIOMASToolStripMenuItem',   'IDIOMAS'),
+(1, 'sALIRToolStripMenuItem',              'SALIR');
+
+-- Inglés (IdIdioma = 2)
+INSERT INTO Traduccion (IdIdioma, Clave, Texto) VALUES
+(2, 'uSUARIOToolStripMenuItem',             'USER'),
+(2, 'lOGINToolStripMenuItem',              'LOGIN'),
+(2, 'lOGOUTToolStripMenuItem',             'LOGOUT'),
+(2, 'bitacoraToolStripMenuItem',           'ADMIN'),
+(2, 'bITACORAToolStripMenuItem1',          'EVENT LOG'),
+(2, 'gESTIONDEUSUARIOSToolStripMenuItem',  'USER MANAGEMENT'),
+(2, 'gESTIONDEPERFILESToolStripMenuItem',  'PROFILE MANAGEMENT'),
+(2, 'bITACORADECAMBIOSToolStripMenuItem',  'CHANGE LOG'),
+(2, 'gESTIONDERESERVASToolStripMenuItem',  'RESERVATIONS'),
+(2, 'gESTIONDEIDIOMASToolStripMenuItem',   'LANGUAGES'),
+(2, 'sALIRToolStripMenuItem',              'EXIT');
