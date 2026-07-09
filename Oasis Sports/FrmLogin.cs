@@ -52,7 +52,10 @@ namespace Oasis_Sports
 
         private void button2_Click(object sender, EventArgs e)
         {
-            FrmMenu frmMenu = new FrmMenu();
+            FrmMenu frmMenu = Application.OpenForms.OfType<FrmMenu>().FirstOrDefault();
+            if (frmMenu == null)
+                frmMenu = new FrmMenu();
+
             frmMenu.Show();
             this.Hide();
         }
@@ -116,10 +119,22 @@ namespace Oasis_Sports
 
 
 
-                
 
-                FrmMenu menu = new FrmMenu();
-                menu.Show();
+
+                FrmMenu menuExistente = Application.OpenForms.OfType<FrmMenu>().FirstOrDefault();
+
+                if (menuExistente != null)
+                {
+                    // Si ya existe, lo refresca y lo muestra
+                    menuExistente.ActualizarPermisos();
+                    menuExistente.Show();
+                }
+                else
+                {
+                    // Si no existe, crea uno nuevo
+                    FrmMenu menu = new FrmMenu();
+                    menu.Show();
+                }
                 this.Hide();
             }
             catch (Exception ex)

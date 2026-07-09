@@ -21,10 +21,31 @@ namespace Oasis_Sports
             LanguageManager.GetInstance().Agregar(this);
         }
 
+        public void ActualizarPermisos()
+        {
+            OcultarControles();
+            if (SessionManager.GetInstance().IsLogged())
+                AplicarPermisos();
+        }
 
         public void ActualizarIdioma()
         {
             LanguageManager.GetInstance().TraducirControles(this);
+
+            
+            var lm = LanguageManager.GetInstance();
+
+            uSUARIOToolStripMenuItem.Text = lm.ObtenerTexto("uSUARIOToolStripMenuItem");
+            lOGINToolStripMenuItem.Text = lm.ObtenerTexto("lOGINToolStripMenuItem");
+            lOGOUTToolStripMenuItem.Text = lm.ObtenerTexto("lOGOUTToolStripMenuItem");
+            bitacoraToolStripMenuItem.Text = lm.ObtenerTexto("bitacoraToolStripMenuItem");
+            bITACORAToolStripMenuItem1.Text = lm.ObtenerTexto("bITACORAToolStripMenuItem1");
+            gESTIONDEUSUARIOSToolStripMenuItem.Text = lm.ObtenerTexto("gESTIONDEUSUARIOSToolStripMenuItem");
+            gESTIONDEPERFILESToolStripMenuItem.Text = lm.ObtenerTexto("gESTIONDEPERFILESToolStripMenuItem");
+            bITACORADECAMBIOSToolStripMenuItem.Text = lm.ObtenerTexto("bITACORADECAMBIOSToolStripMenuItem");
+            gESTIONDERESERVASToolStripMenuItem.Text = lm.ObtenerTexto("gESTIONDERESERVASToolStripMenuItem");
+            gESTIONDEIDIOMASToolStripMenuItem.Text = lm.ObtenerTexto("gESTIONDEIDIOMASToolStripMenuItem");
+            sALIRToolStripMenuItem.Text = lm.ObtenerTexto("sALIRToolStripMenuItem");
         }
 
 
@@ -37,7 +58,10 @@ namespace Oasis_Sports
 
         private void lOGINToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmLogin frmLogin = new FrmLogin();
+            FrmLogin frmLogin = Application.OpenForms.OfType<FrmLogin>().FirstOrDefault();
+            if (frmLogin == null)
+                frmLogin = new FrmLogin();
+
             frmLogin.Show();
             this.Hide();
         }

@@ -47,10 +47,6 @@ namespace Oasis_Sports
             RegistrarClavesDeControl(tempMenu.Controls, (int)cmbIdiomas.SelectedValue);
             tempMenu.Dispose();
 
-
-
-            //MessageBox.Show("Claves registradas correctamente.");
-            //CargarClaves();
             CargarClaves();
         }
 
@@ -159,7 +155,10 @@ namespace Oasis_Sports
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FrmMenu frmMenu = new FrmMenu();
+            FrmMenu frmMenu = Application.OpenForms.OfType<FrmMenu>().FirstOrDefault();
+            if (frmMenu == null)
+                frmMenu = new FrmMenu();
+
             frmMenu.Show();
             this.Hide();
         }

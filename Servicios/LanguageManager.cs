@@ -107,7 +107,15 @@ namespace Servicios
         public void TraducirControles(object formulario)
         {
             if (formulario is System.Windows.Forms.Control ctrl)
+            {
                 TraducirRecursivo(ctrl.Controls);
+
+                foreach (System.Windows.Forms.Control c in ctrl.Controls)
+                {
+                    if (c is System.Windows.Forms.MenuStrip ms)
+                        TraducirMenuItems(ms.Items);
+                }
+            }
         }
 
         private void TraducirRecursivo(System.Windows.Forms.Control.ControlCollection controles)
