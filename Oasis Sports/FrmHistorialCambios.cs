@@ -47,6 +47,8 @@ namespace Oasis_Sports
             LanguageManager.GetInstance().Quitar(this);
         }
 
+        BLLUsuario bLLUsuario = new BLLUsuario();
+        BLL_DV bll_DV = new BLL_DV();
   
         private void button1_Click(object sender, EventArgs e)
         {
@@ -85,6 +87,7 @@ namespace Oasis_Sports
 
             string quienRestaura = SessionManager.GetInstance().Usuario?.Username ?? "sistema";
             bllHistorial.RestaurarCampo(idUsuario, campo, valorAnterior, quienRestaura);
+            bll_DV.InicializarDVs();
 
             MessageBox.Show("Campo restaurado correctamente.");
             CargarHistorial();

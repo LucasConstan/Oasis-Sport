@@ -21,31 +21,67 @@ namespace Oasis_Sports
             LanguageManager.GetInstance().Agregar(this);
         }
 
-        public void ActualizarPermisos()
+        private void RegistrarClaves()
         {
-            OcultarControles();
-            if (SessionManager.GetInstance().IsLogged())
-                AplicarPermisos();
+            int idIdioma = LanguageManager.GetInstance().IdIdiomaActual;
+            BLL_Traduccion bll = new BLL_Traduccion();
+            List<string> clavesExistentes = bll.ObtenerTodasLasClaves();
+
+            foreach (Control c in this.Controls)
+                RegistrarRecursivo(c, idIdioma, bll, clavesExistentes);
         }
+
+        private void RegistrarRecursivo(Control c, int idIdioma, BLL_Traduccion bll, List<string> clavesExistentes)
+        {
+            if (c is MenuStrip ms)
+            {
+                RegistrarMenuItems(ms.Items, idIdioma, bll, clavesExistentes);
+                return;
+            }
+
+
+            if (!string.IsNullOrWhiteSpace(c.Name) && !string.IsNullOrWhiteSpace(c.Text)
+                && !clavesExistentes.Contains(c.Name))
+            {
+                bll.GuardarOActualizar(new Traduccion
+                {
+                    IdIdioma = idIdioma,
+                    Clave = c.Name,
+                    Texto = c.Text
+                });
+                clavesExistentes.Add(c.Name);
+            }
+
+            foreach (Control hijo in c.Controls)
+                RegistrarRecursivo(hijo, idIdioma, bll, clavesExistentes);
+        }
+
+        private void RegistrarMenuItems(ToolStripItemCollection items, int idIdioma, BLL_Traduccion bll, List<string> clavesExistentes)
+        {
+            foreach (ToolStripItem item in items)
+            {
+                if (!string.IsNullOrWhiteSpace(item.Name) && !string.IsNullOrWhiteSpace(item.Text)
+                    && !clavesExistentes.Contains(item.Name))
+                {
+                    bll.GuardarOActualizar(new Traduccion
+                    {
+                        IdIdioma = idIdioma,
+                        Clave = item.Name,
+                        Texto = item.Text
+                    });
+                    clavesExistentes.Add(item.Name);
+                }
+
+                if (item is ToolStripMenuItem mi && mi.DropDownItems.Count > 0)
+                    RegistrarMenuItems(mi.DropDownItems, idIdioma, bll, clavesExistentes);
+            }
+        }
+
 
         public void ActualizarIdioma()
         {
             LanguageManager.GetInstance().TraducirControles(this);
 
-            
-            var lm = LanguageManager.GetInstance();
-
-            uSUARIOToolStripMenuItem.Text = lm.ObtenerTexto("uSUARIOToolStripMenuItem");
-            lOGINToolStripMenuItem.Text = lm.ObtenerTexto("lOGINToolStripMenuItem");
-            lOGOUTToolStripMenuItem.Text = lm.ObtenerTexto("lOGOUTToolStripMenuItem");
-            bitacoraToolStripMenuItem.Text = lm.ObtenerTexto("bitacoraToolStripMenuItem");
-            bITACORAToolStripMenuItem1.Text = lm.ObtenerTexto("bITACORAToolStripMenuItem1");
-            gESTIONDEUSUARIOSToolStripMenuItem.Text = lm.ObtenerTexto("gESTIONDEUSUARIOSToolStripMenuItem");
-            gESTIONDEPERFILESToolStripMenuItem.Text = lm.ObtenerTexto("gESTIONDEPERFILESToolStripMenuItem");
-            bITACORADECAMBIOSToolStripMenuItem.Text = lm.ObtenerTexto("bITACORADECAMBIOSToolStripMenuItem");
-            gESTIONDERESERVASToolStripMenuItem.Text = lm.ObtenerTexto("gESTIONDERESERVASToolStripMenuItem");
-            gESTIONDEIDIOMASToolStripMenuItem.Text = lm.ObtenerTexto("gESTIONDEIDIOMASToolStripMenuItem");
-            sALIRToolStripMenuItem.Text = lm.ObtenerTexto("sALIRToolStripMenuItem");
         }
 
 
@@ -58,9 +94,7 @@ namespace Oasis_Sports
 
         private void lOGINToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmLogin frmLogin = Application.OpenForms.OfType<FrmLogin>().FirstOrDefault();
-            if (frmLogin == null)
-                frmLogin = new FrmLogin();
+            FrmLogin frmLogin = new FrmLogin();
 
             frmLogin.Show();
             this.Hide();
@@ -109,6 +143,8 @@ namespace Oasis_Sports
                 return;
 
             AplicarPermisos();
+            LanguageManager.GetInstance().TraducirControles(this);
+            RegistrarClaves();
         }
 
         private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e) { }
@@ -165,8 +201,7 @@ namespace Oasis_Sports
 
         private void gESTIONDEIDIOMASToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmIdiomas frmIdiomas = new FrmIdiomas();
-            frmIdiomas.ShowDialog();
+            
         }
 
         private BLL_Permisos permisoBLL = new BLL_Permisos();
@@ -179,6 +214,18 @@ namespace Oasis_Sports
 
             frm.ShowDialog();
         }
-      
+
+        private void sELECCIONARIDIOMAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmSeleccionIdioma frmSeleccionIdioma = new FrmSeleccionIdioma();
+            frmSeleccionIdioma.ShowDialog();
+        }
+
+        private void cREARIDIOMAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmIdiomas frmIdiomas = new FrmIdiomas();
+            frmIdiomas.Show();
+            this.Hide();
+        }
     }
 }

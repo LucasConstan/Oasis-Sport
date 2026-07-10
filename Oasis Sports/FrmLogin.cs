@@ -23,6 +23,63 @@ namespace Oasis_Sports
         {
             InitializeComponent();
             LanguageManager.GetInstance().Agregar(this);
+            
+        }
+
+        private void RegistrarClaves()
+        {
+            int idIdioma = LanguageManager.GetInstance().IdIdiomaActual;
+            BLL_Traduccion bll = new BLL_Traduccion();
+            List<string> clavesExistentes = bll.ObtenerTodasLasClaves();
+
+            foreach (Control c in this.Controls)
+                RegistrarRecursivo(c, idIdioma, bll, clavesExistentes);
+        }
+
+        private void RegistrarRecursivo(Control c, int idIdioma, BLL_Traduccion bll, List<string> clavesExistentes)
+        {
+            if (c is MenuStrip ms)
+            {
+                RegistrarMenuItems(ms.Items, idIdioma, bll, clavesExistentes);
+                return;
+            }
+
+
+            if (!string.IsNullOrWhiteSpace(c.Name) && !string.IsNullOrWhiteSpace(c.Text)
+                && !clavesExistentes.Contains(c.Name))
+            {
+                bll.GuardarOActualizar(new Traduccion
+                {
+                    IdIdioma = idIdioma,
+                    Clave = c.Name,
+                    Texto = c.Text
+                });
+                clavesExistentes.Add(c.Name);
+            }
+
+            foreach (Control hijo in c.Controls)
+                RegistrarRecursivo(hijo, idIdioma, bll, clavesExistentes);
+        }
+
+        private void RegistrarMenuItems(ToolStripItemCollection items, int idIdioma, BLL_Traduccion bll, List<string> clavesExistentes)
+        {
+            foreach (ToolStripItem item in items)
+            {
+                if (!string.IsNullOrWhiteSpace(item.Name) && !string.IsNullOrWhiteSpace(item.Text)
+                    && !clavesExistentes.Contains(item.Name))
+                {
+                    bll.GuardarOActualizar(new Traduccion
+                    {
+                        IdIdioma = idIdioma,
+                        Clave = item.Name,
+                        Texto = item.Text
+                    });
+                    clavesExistentes.Add(item.Name);
+                }
+
+                if (item is ToolStripMenuItem mi && mi.DropDownItems.Count > 0)
+                    RegistrarMenuItems(mi.DropDownItems, idIdioma, bll, clavesExistentes);
+            }
         }
 
 
@@ -52,15 +109,14 @@ namespace Oasis_Sports
 
         private void button2_Click(object sender, EventArgs e)
         {
-            FrmMenu frmMenu = Application.OpenForms.OfType<FrmMenu>().FirstOrDefault();
-            if (frmMenu == null)
-                frmMenu = new FrmMenu();
+            FrmMenu frmMenu = frmMenu = new FrmMenu();
 
             frmMenu.Show();
             this.Hide();
         }
 
         Encriptacion encriptador = new Encriptacion();
+        BLL_DV bLL_DV = new BLL_DV();
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -72,7 +128,7 @@ namespace Oasis_Sports
 
             //bllUsuario.InicializarDVs();  //Solo para la primera vez que se usa
 
-            if (!bllUsuario.VerificarIntegridad())
+            if (!bLL_DV.VerificarIntegridad())
             {
                 DialogResult resultado = MessageBox.Show(
                     "Se detectó una alteración en los datos.\n¿Desea recalcular los dígitos verificadores?",
@@ -82,7 +138,7 @@ namespace Oasis_Sports
 
                 if (resultado == DialogResult.Yes)
                 {
-                    bllUsuario.InicializarDVs();
+                    bLL_DV.InicializarDVs();
 
                     MessageBox.Show(
                         "Dígitos verificadores recalculados correctamente.",
@@ -118,23 +174,8 @@ namespace Oasis_Sports
                 MessageBox.Show("Bienvenido " + user.Username);
 
 
-
-
-
-                FrmMenu menuExistente = Application.OpenForms.OfType<FrmMenu>().FirstOrDefault();
-
-                if (menuExistente != null)
-                {
-                    // Si ya existe, lo refresca y lo muestra
-                    menuExistente.ActualizarPermisos();
-                    menuExistente.Show();
-                }
-                else
-                {
-                    // Si no existe, crea uno nuevo
-                    FrmMenu menu = new FrmMenu();
-                    menu.Show();
-                }
+                FrmMenu menu = new FrmMenu();
+                menu.Show();
                 this.Hide();
             }
             catch (Exception ex)
@@ -156,8 +197,10 @@ namespace Oasis_Sports
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-            textBox2.Text = "123";
-            textBox1.Text = "jondem";
+            textBox2.Text = "1234";
+            textBox1.Text = "Lucas";
+            LanguageManager.GetInstance().TraducirControles(this);
+            RegistrarClaves();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e) { }

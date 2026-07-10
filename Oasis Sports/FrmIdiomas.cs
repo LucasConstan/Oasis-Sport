@@ -24,29 +24,36 @@ namespace Oasis_Sports
         private void FrmIdiomas_Load(object sender, EventArgs e)
         {
             CargarIdiomas();
-            if (cmbIdiomas.SelectedValue == null) return;
+            //RegistrarClaves();
+            CargarClaves();
+        }
 
+        private void RegistrarClaves()
+        {
+            int idIdioma = LanguageManager.GetInstance().IdIdiomaActual;
+            BLL_Traduccion bll = new BLL_Traduccion();
 
-            FrmLogin temp = new FrmLogin();
-            RegistrarClavesDeControl(temp.Controls, (int)cmbIdiomas.SelectedValue);
-            temp.Dispose();
+            foreach (Control c in this.Controls)
+                RegistrarRecursivo(c, idIdioma, bll);
+        }
 
-            FrmGestionUsuarios tempUsuarios = new FrmGestionUsuarios();
-            RegistrarClavesDeControl(tempUsuarios.Controls, (int)cmbIdiomas.SelectedValue);
-            tempUsuarios.Dispose();
+        private void RegistrarRecursivo(Control c, int idIdioma, BLL_Traduccion bll)
+        {
+            if (!string.IsNullOrWhiteSpace(c.Name) && !string.IsNullOrWhiteSpace(c.Text))
+            {
+                bll.GuardarOActualizar(new Traduccion
+                {
+                    IdIdioma = idIdioma,
+                    Clave = c.Name,
+                    Texto = c.Text
+                });
+            }
 
-            FrmBitacora tempBitacora = new FrmBitacora();
-            RegistrarClavesDeControl(tempBitacora.Controls, (int)cmbIdiomas.SelectedValue);
-            tempBitacora.Dispose();
+            foreach (Control hijo in c.Controls)
+                RegistrarRecursivo(hijo, idIdioma, bll);
 
-            FrmGestionPerfiles tempGestionPerfiles = new FrmGestionPerfiles();
-            RegistrarClavesDeControl(tempGestionPerfiles.Controls, (int)cmbIdiomas.SelectedValue);
-            tempGestionPerfiles.Dispose();
-
-            FrmMenu tempMenu = new FrmMenu();
-            RegistrarClavesDeControl(tempMenu.Controls, (int)cmbIdiomas.SelectedValue);
-            tempMenu.Dispose();
-
+            //MessageBox.Show("Claves registradas correctamente.");
+            //CargarClaves();
             CargarClaves();
         }
 
@@ -119,7 +126,7 @@ namespace Oasis_Sports
             if (cmbIdiomas.SelectedValue == null) return;
 
             int idIdioma = (int)cmbIdiomas.SelectedValue;
-            LanguageManager.GetInstance().CambiarIdioma(idIdioma);
+            bllTraduccion.CambiarIdioma(idIdioma); 
             MessageBox.Show("Idioma cambiado. Todos los formularios se actualizaron.");
         }
 
@@ -155,10 +162,7 @@ namespace Oasis_Sports
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FrmMenu frmMenu = Application.OpenForms.OfType<FrmMenu>().FirstOrDefault();
-            if (frmMenu == null)
-                frmMenu = new FrmMenu();
-
+            FrmMenu frmMenu = new FrmMenu();
             frmMenu.Show();
             this.Hide();
         }

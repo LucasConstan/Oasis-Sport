@@ -36,7 +36,7 @@
             lblAlquilerCanchas = new Label();
             btnVolver = new Button();
             pictureBox1 = new PictureBox();
-            button1 = new Button();
+            btnIdiomaInicio = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -127,17 +127,17 @@
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
             // 
-            // button1
+            // btnIdiomaInicio
             // 
-            button1.BackColor = Color.Transparent;
-            button1.ForeColor = Color.DarkGreen;
-            button1.Location = new Point(550, 5);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 8;
-            button1.Text = "Idioma";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click_1;
+            btnIdiomaInicio.BackColor = Color.Transparent;
+            btnIdiomaInicio.ForeColor = Color.DarkGreen;
+            btnIdiomaInicio.Location = new Point(550, 5);
+            btnIdiomaInicio.Name = "btnIdiomaInicio";
+            btnIdiomaInicio.Size = new Size(75, 23);
+            btnIdiomaInicio.TabIndex = 8;
+            btnIdiomaInicio.Text = "Idioma";
+            btnIdiomaInicio.UseVisualStyleBackColor = false;
+            btnIdiomaInicio.Click += button1_Click_1;
             // 
             // FrmLogin
             // 
@@ -145,7 +145,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(224, 224, 224);
             ClientSize = new Size(630, 353);
-            Controls.Add(button1);
+            Controls.Add(btnIdiomaInicio);
             Controls.Add(btnVolver);
             Controls.Add(lblAlquilerCanchas);
             Controls.Add(lblContraseña);
@@ -175,6 +175,6 @@
         private Label lblAlquilerCanchas;
         private Button btnVolver;
         private PictureBox pictureBox1;
-        private Button button1;
+        private Button btnIdiomaInicio;
     }
 }

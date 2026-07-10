@@ -27,6 +27,8 @@ namespace Oasis_Sports
             bITACORADECAMBIOSToolStripMenuItem = new ToolStripMenuItem();
             gESTIONDERESERVASToolStripMenuItem = new ToolStripMenuItem();
             gESTIONDEIDIOMASToolStripMenuItem = new ToolStripMenuItem();
+            sELECCIONARIDIOMAToolStripMenuItem = new ToolStripMenuItem();
+            cREARIDIOMAToolStripMenuItem = new ToolStripMenuItem();
             sALIRToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -51,14 +53,14 @@ namespace Oasis_Sports
             // lOGINToolStripMenuItem
             // 
             lOGINToolStripMenuItem.Name = "lOGINToolStripMenuItem";
-            lOGINToolStripMenuItem.Size = new Size(180, 22);
+            lOGINToolStripMenuItem.Size = new Size(130, 22);
             lOGINToolStripMenuItem.Text = "LOGIN";
             lOGINToolStripMenuItem.Click += lOGINToolStripMenuItem_Click;
             // 
             // lOGOUTToolStripMenuItem
             // 
             lOGOUTToolStripMenuItem.Name = "lOGOUTToolStripMenuItem";
-            lOGOUTToolStripMenuItem.Size = new Size(180, 22);
+            lOGOUTToolStripMenuItem.Size = new Size(130, 22);
             lOGOUTToolStripMenuItem.Text = "LOGOUT";
             lOGOUTToolStripMenuItem.Click += lOGOUTToolStripMenuItem_Click;
             // 
@@ -111,12 +113,27 @@ namespace Oasis_Sports
             // 
             // gESTIONDEIDIOMASToolStripMenuItem
             // 
+            gESTIONDEIDIOMASToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sELECCIONARIDIOMAToolStripMenuItem, cREARIDIOMAToolStripMenuItem });
             gESTIONDEIDIOMASToolStripMenuItem.Font = new Font("Times New Roman", 10F);
             gESTIONDEIDIOMASToolStripMenuItem.Name = "gESTIONDEIDIOMASToolStripMenuItem";
             gESTIONDEIDIOMASToolStripMenuItem.Size = new Size(78, 20);
             gESTIONDEIDIOMASToolStripMenuItem.Text = "IDIOMAS";
             gESTIONDEIDIOMASToolStripMenuItem.Visible = false;
             gESTIONDEIDIOMASToolStripMenuItem.Click += gESTIONDEIDIOMASToolStripMenuItem_Click;
+            // 
+            // sELECCIONARIDIOMAToolStripMenuItem
+            // 
+            sELECCIONARIDIOMAToolStripMenuItem.Name = "sELECCIONARIDIOMAToolStripMenuItem";
+            sELECCIONARIDIOMAToolStripMenuItem.Size = new Size(222, 22);
+            sELECCIONARIDIOMAToolStripMenuItem.Text = "SELECCIONAR IDIOMA";
+            sELECCIONARIDIOMAToolStripMenuItem.Click += sELECCIONARIDIOMAToolStripMenuItem_Click;
+            // 
+            // cREARIDIOMAToolStripMenuItem
+            // 
+            cREARIDIOMAToolStripMenuItem.Name = "cREARIDIOMAToolStripMenuItem";
+            cREARIDIOMAToolStripMenuItem.Size = new Size(222, 22);
+            cREARIDIOMAToolStripMenuItem.Text = "CREAR IDIOMA";
+            cREARIDIOMAToolStripMenuItem.Click += cREARIDIOMAToolStripMenuItem_Click;
             // 
             // sALIRToolStripMenuItem
             // 
@@ -161,5 +178,7 @@ namespace Oasis_Sports
         private ToolStripMenuItem gESTIONDERESERVASToolStripMenuItem;
         private ToolStripMenuItem gESTIONDEIDIOMASToolStripMenuItem;   // ← nuevo
         private ToolStripMenuItem bITACORADECAMBIOSToolStripMenuItem;
+        private ToolStripMenuItem sELECCIONARIDIOMAToolStripMenuItem;
+        private ToolStripMenuItem cREARIDIOMAToolStripMenuItem;
     }
 }

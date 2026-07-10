@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
+using Entidades;
 using Servicios;
 
 namespace Oasis_Sports
@@ -22,6 +23,63 @@ namespace Oasis_Sports
         {
             InitializeComponent();
             LanguageManager.GetInstance().Agregar(this);
+            RegistrarClaves(); 
+        }
+
+        private void RegistrarClaves()
+        {
+            int idIdioma = LanguageManager.GetInstance().IdIdiomaActual;
+            BLL_Traduccion bll = new BLL_Traduccion();
+            List<string> clavesExistentes = bll.ObtenerTodasLasClaves();
+
+            foreach (Control c in this.Controls)
+                RegistrarRecursivo(c, idIdioma, bll, clavesExistentes);
+        }
+
+        private void RegistrarRecursivo(Control c, int idIdioma, BLL_Traduccion bll, List<string> clavesExistentes)
+        {
+            if (c is MenuStrip ms)
+            {
+                RegistrarMenuItems(ms.Items, idIdioma, bll, clavesExistentes);
+                return;
+            }
+
+            
+            if (!string.IsNullOrWhiteSpace(c.Name) && !string.IsNullOrWhiteSpace(c.Text)
+                && !clavesExistentes.Contains(c.Name))
+            {
+                bll.GuardarOActualizar(new Traduccion
+                {
+                    IdIdioma = idIdioma,
+                    Clave = c.Name,
+                    Texto = c.Text
+                });
+                clavesExistentes.Add(c.Name); 
+            }
+
+            foreach (Control hijo in c.Controls)
+                RegistrarRecursivo(hijo, idIdioma, bll, clavesExistentes);
+        }
+
+        private void RegistrarMenuItems(ToolStripItemCollection items, int idIdioma, BLL_Traduccion bll, List<string> clavesExistentes)
+        {
+            foreach (ToolStripItem item in items)
+            {
+                if (!string.IsNullOrWhiteSpace(item.Name) && !string.IsNullOrWhiteSpace(item.Text)
+                    && !clavesExistentes.Contains(item.Name))
+                {
+                    bll.GuardarOActualizar(new Traduccion
+                    {
+                        IdIdioma = idIdioma,
+                        Clave = item.Name,
+                        Texto = item.Text
+                    });
+                    clavesExistentes.Add(item.Name);
+                }
+
+                if (item is ToolStripMenuItem mi && mi.DropDownItems.Count > 0)
+                    RegistrarMenuItems(mi.DropDownItems, idIdioma, bll, clavesExistentes);
+            }
         }
 
         public void ActualizarIdioma()

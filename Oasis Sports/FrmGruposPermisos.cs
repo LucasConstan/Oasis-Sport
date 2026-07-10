@@ -1,5 +1,6 @@
 ﻿using BLL;
 using Entidades;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,11 +13,12 @@ using System.Windows.Forms;
 
 namespace Oasis_Sports
 {
-    public partial class FrmGruposPermisos : BaseForm
+    public partial class FrmGruposPermisos : BaseForm, IObserverIdioma
     {
         public FrmGruposPermisos()
         {
             InitializeComponent();
+            LanguageManager.GetInstance().Agregar(this);
         }
 
         private BLL_Permisos permisoBLL = new BLL_Permisos();
@@ -25,6 +27,79 @@ namespace Oasis_Sports
         private void FrmGruposPermisos_Load(object sender, EventArgs e)
         {
             CargarPermisosDisponibles();
+            RegistrarClaves();
+            LanguageManager.GetInstance().TraducirControles(this);
+        }
+
+        public void ActualizarIdioma()
+        {
+            if (this.InvokeRequired)
+                this.Invoke(new Action(() => LanguageManager.GetInstance().TraducirControles(this)));
+            else
+                LanguageManager.GetInstance().TraducirControles(this);
+        }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            if (this.Visible)
+                ActualizarIdioma();
+        }
+
+        private void RegistrarClaves()
+        {
+            int idIdioma = LanguageManager.GetInstance().IdIdiomaActual;
+            BLL_Traduccion bll = new BLL_Traduccion();
+            List<string> clavesExistentes = bll.ObtenerTodasLasClaves();
+
+            foreach (Control c in this.Controls)
+                RegistrarRecursivo(c, idIdioma, bll, clavesExistentes);
+        }
+
+        private void RegistrarRecursivo(Control c, int idIdioma, BLL_Traduccion bll, List<string> clavesExistentes)
+        {
+            if (c is MenuStrip ms)
+            {
+                RegistrarMenuItems(ms.Items, idIdioma, bll, clavesExistentes);
+                return;
+            }
+
+
+            if (!string.IsNullOrWhiteSpace(c.Name) && !string.IsNullOrWhiteSpace(c.Text)
+                && !clavesExistentes.Contains(c.Name))
+            {
+                bll.GuardarOActualizar(new Traduccion
+                {
+                    IdIdioma = idIdioma,
+                    Clave = c.Name,
+                    Texto = c.Text
+                });
+                clavesExistentes.Add(c.Name);
+            }
+
+            foreach (Control hijo in c.Controls)
+                RegistrarRecursivo(hijo, idIdioma, bll, clavesExistentes);
+        }
+
+        private void RegistrarMenuItems(ToolStripItemCollection items, int idIdioma, BLL_Traduccion bll, List<string> clavesExistentes)
+        {
+            foreach (ToolStripItem item in items)
+            {
+                if (!string.IsNullOrWhiteSpace(item.Name) && !string.IsNullOrWhiteSpace(item.Text)
+                    && !clavesExistentes.Contains(item.Name))
+                {
+                    bll.GuardarOActualizar(new Traduccion
+                    {
+                        IdIdioma = idIdioma,
+                        Clave = item.Name,
+                        Texto = item.Text
+                    });
+                    clavesExistentes.Add(item.Name);
+                }
+
+                if (item is ToolStripMenuItem mi && mi.DropDownItems.Count > 0)
+                    RegistrarMenuItems(mi.DropDownItems, idIdioma, bll, clavesExistentes);
+            }
         }
 
         private void CargarPermisosDisponibles()

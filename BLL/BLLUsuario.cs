@@ -86,37 +86,6 @@ namespace BLL
             return usuario;
         }
 
-        private ValidadorDeIntegridad validador = new ValidadorDeIntegridad();
-
-        public bool VerificarIntegridad()
-        {
-            List<Usuario> usuarios = DAL_Usuario.ObtenerTodosParaVerificar();
-
-            
-            List<IVerificable> objetos = usuarios.Cast<IVerificable>().ToList();
-            List<int> dvhsGuardados = usuarios.Select(u => u.DVH).ToList();
-            int dvvGuardado = DAL_Usuario.ObtenerDVV();
-
-            return validador.VerificarIntegridad(objetos, dvhsGuardados, dvvGuardado);
-        }
-
-        public void RecalcularYGuardar(Usuario u)
-        {
-            
-            int dvh = validador.CalcularDV(u);
-            DAL_Usuario.ActualizarDVH(u.Id, dvh);
-
-           
-            List<Usuario> todos = DAL_Usuario.ObtenerTodosParaVerificar();
-            List<IVerificable> objetos = todos.Cast<IVerificable>().ToList();
-            int dvv = validador.CalcularDVV(objetos);
-            DAL_Usuario.ActualizarDVV(dvv);
-        }
-
-        public void InicializarDVs()
-        {
-            DAL_Usuario.InicializarDVs();
-        }
-
+       
     }
 }

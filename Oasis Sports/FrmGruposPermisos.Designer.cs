@@ -37,7 +37,7 @@
             btnAgregar = new Button();
             btnQuitar = new Button();
             btnGuardar = new Button();
-            button1 = new Button();
+            btnVolver = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -126,22 +126,22 @@
             btnGuardar.UseVisualStyleBackColor = true;
             btnGuardar.Click += btnGuardar_Click;
             // 
-            // button1
+            // btnVolver
             // 
-            button1.Location = new Point(329, 313);
-            button1.Name = "button1";
-            button1.Size = new Size(153, 38);
-            button1.TabIndex = 8;
-            button1.Text = "VOLVER";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnVolver.Location = new Point(329, 313);
+            btnVolver.Name = "btnVolver";
+            btnVolver.Size = new Size(153, 38);
+            btnVolver.TabIndex = 8;
+            btnVolver.Text = "VOLVER";
+            btnVolver.UseVisualStyleBackColor = true;
+            btnVolver.Click += button1_Click;
             // 
             // FrmGruposPermisos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button1);
+            Controls.Add(btnVolver);
             Controls.Add(btnGuardar);
             Controls.Add(btnQuitar);
             Controls.Add(btnAgregar);
@@ -169,6 +169,6 @@
         private Button btnAgregar;
         private Button btnQuitar;
         private Button btnGuardar;
-        private Button button1;
+        private Button btnVolver;
     }
 }

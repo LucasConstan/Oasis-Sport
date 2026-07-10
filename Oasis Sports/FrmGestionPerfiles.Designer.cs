@@ -36,7 +36,7 @@
             btnQuitar = new Button();
             lstDisponibles = new ListBox();
             btnVolver = new Button();
-            button1 = new Button();
+            btnCrearGP = new Button();
             SuspendLayout();
             // 
             // treeView1
@@ -112,22 +112,22 @@
             btnVolver.UseVisualStyleBackColor = true;
             btnVolver.Click += button1_Click;
             // 
-            // button1
+            // btnCrearGP
             // 
-            button1.Location = new Point(32, 437);
-            button1.Name = "button1";
-            button1.Size = new Size(192, 54);
-            button1.TabIndex = 8;
-            button1.Text = "CREAR GRUPO DE PERMISOS";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_1;
+            btnCrearGP.Location = new Point(32, 437);
+            btnCrearGP.Name = "btnCrearGP";
+            btnCrearGP.Size = new Size(192, 54);
+            btnCrearGP.TabIndex = 8;
+            btnCrearGP.Text = "CREAR GRUPO DE PERMISOS";
+            btnCrearGP.UseVisualStyleBackColor = true;
+            btnCrearGP.Click += button1_Click_1;
             // 
             // FrmGestionPerfiles
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(869, 609);
-            Controls.Add(button1);
+            Controls.Add(btnCrearGP);
             Controls.Add(btnVolver);
             Controls.Add(lstDisponibles);
             Controls.Add(btnQuitar);
@@ -154,6 +154,6 @@
         private Button btnQuitar;
         private ListBox lstDisponibles;
         private Button btnVolver;
-        private Button button1;
+        private Button btnCrearGP;
     }
 }

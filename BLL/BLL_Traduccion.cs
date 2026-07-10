@@ -1,5 +1,6 @@
 using DAL;
 using Entidades;
+using Servicios;
 
 namespace BLL
 {
@@ -20,6 +21,12 @@ namespace BLL
         public void GuardarOActualizar(Traduccion traduccion)
         {
             dal.GuardarOActualizar(traduccion);
+        }
+
+        public void CambiarIdioma(int idIdioma)
+        {
+            List<Traduccion> traducciones = dal.ObtenerPorIdioma(idIdioma);
+            LanguageManager.GetInstance().CambiarIdioma(idIdioma, traducciones);
         }
     }
 }

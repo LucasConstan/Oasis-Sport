@@ -67,8 +67,8 @@ namespace BLL
         public void RestaurarCampo(int idUsuario, string campo, string valorAnterior, string usuarioQueRestaura)
         {
             
-            DAL_Usuario dalUsuario = new DAL_Usuario();
-            dalUsuario.RestaurarCampo(idUsuario, campo, valorAnterior);
+            DAL_DV dal_DV = new DAL_DV();
+            dal_DV.RestaurarCampo(idUsuario, campo, valorAnterior);
 
            
             dal.Registrar(new HistorialCambio
