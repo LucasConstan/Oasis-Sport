@@ -29,6 +29,8 @@ namespace Oasis_Sports
             CargarPermisosDisponibles();
             RegistrarClaves();
             LanguageManager.GetInstance().TraducirControles(this);
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;
         }
 
         public void ActualizarIdioma()
@@ -144,6 +146,9 @@ namespace Oasis_Sports
             lstPermisosDelGrupo.DisplayMember = "Nombre";
         }
 
+        private bool modoModificacion = false;
+        private int grupoIdSeleccionado = -1;
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             string nombreGrupo = textBox1.Text.Trim();
@@ -160,19 +165,27 @@ namespace Oasis_Sports
                 return;
             }
 
-            int grupoId = permisoBLL.CrearGrupoPermiso(nombreGrupo);
-
-            foreach (ComponentePermiso permiso in permisosSeleccionados)
+            if (modoModificacion)
             {
-                permisoBLL.AgregarPermisoAGrupo(grupoId, permiso.Id);
+                permisoBLL.ModificarGrupoPermiso(grupoIdSeleccionado, nombreGrupo, permisosSeleccionados);
+                MessageBox.Show("Grupo modificado correctamente.");
+            }
+            else
+            {
+                int grupoId = permisoBLL.CrearGrupoPermiso(nombreGrupo);
+                foreach (ComponentePermiso permiso in permisosSeleccionados)
+                    permisoBLL.AgregarPermisoAGrupo(grupoId, permiso.Id);
+                MessageBox.Show("Grupo creado correctamente.");
             }
 
-            MessageBox.Show("Grupo de permisos creado correctamente.");
 
+            modoModificacion = false;
+            grupoIdSeleccionado = -1;
             textBox1.Clear();
             permisosSeleccionados.Clear();
             RefrescarPermisosDelGrupo();
             CargarPermisosDisponibles();
+            lblmodo.Text = "Modo: Nuevo grupo";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -180,6 +193,56 @@ namespace Oasis_Sports
             FrmGestionPerfiles frmGestionPerfiles = new FrmGestionPerfiles();
             frmGestionPerfiles.Show();
             this.Hide();
+        }
+
+
+        private void lstPermisosDisponibles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComponentePermiso seleccionado = lstPermisosDisponibles.SelectedItem as ComponentePermiso;
+            btnModificar.Enabled = seleccionado is GrupoPermisos;
+            btnEliminar.Enabled = seleccionado is GrupoPermisos;
+            
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            GrupoPermisos grupo = lstPermisosDisponibles.SelectedItem as GrupoPermisos;
+            if (grupo == null) return;
+
+            modoModificacion = true;
+            grupoIdSeleccionado = grupo.Id;
+            textBox1.Text = grupo.Nombre;
+            permisosSeleccionados = permisoBLL.ObtenerPermisosGrupo(grupoIdSeleccionado);
+            RefrescarPermisosDelGrupo();
+            lblmodo.Text = "Modo: Modificando: " + grupo.Nombre;
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            modoModificacion = false;
+            grupoIdSeleccionado = -1;
+            textBox1.Clear();
+            permisosSeleccionados.Clear();
+            RefrescarPermisosDelGrupo();
+            lblmodo.Text = "Modo: Nuevo grupo";
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            GrupoPermisos grupo = lstPermisosDisponibles.SelectedItem as GrupoPermisos;
+            if (grupo == null) return;
+
+            DialogResult confirmacion = MessageBox.Show(
+                $"¿Estás seguro que querés eliminar el grupo '{grupo.Nombre}'?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (confirmacion != DialogResult.Yes) return;
+
+            permisoBLL.EliminarGrupoPermiso(grupo.Id);
+            MessageBox.Show("Grupo eliminado correctamente.");
+            CargarPermisosDisponibles();
         }
     }
 }

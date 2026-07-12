@@ -81,6 +81,30 @@ namespace BLL
             permisoDAL.AgregarPermisoAGrupo(grupoId, permisoHijoId);
         }
 
+        public List<ComponentePermiso> ObtenerPermisosGrupo(int grupoId)
+        {
+            return permisoDAL.ObtenerPermisosGrupo(grupoId);
+        }
+
+        public void ModificarGrupoPermiso(int grupoId, string nombre, List<ComponentePermiso> permisosNuevos)
+        {
+            if (string.IsNullOrWhiteSpace(nombre))
+                throw new Exception("Debe ingresar un nombre para el grupo.");
+
+            
+            permisoDAL.ActualizarNombreGrupo(grupoId, nombre);
+            permisoDAL.EliminarPermisosDeGrupo(grupoId);
+
+            foreach (ComponentePermiso permiso in permisosNuevos)
+                permisoDAL.AgregarPermisoAGrupo(grupoId, permiso.Id);
+        }
+
+        public void EliminarGrupoPermiso(int grupoId)
+        {
+            permisoDAL.EliminarPermisosDeGrupo(grupoId); 
+            permisoDAL.EliminarGrupo(grupoId);           
+        }
+
 
     }
 }

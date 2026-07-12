@@ -251,5 +251,88 @@ namespace DAL
                 }
             }
         }
+
+        public List<ComponentePermiso> ObtenerPermisosGrupo(int idPermiso)
+        {
+            List<ComponentePermiso> permisos = new List<ComponentePermiso>();
+
+            Conexion conexion = new Conexion();
+            SqlConnection cn = conexion.ObtenerConexion();
+            cn.Open();
+
+            string query = @"SELECT p.Id, p.Nombre, p.EsGrupo 
+                     FROM Permiso p 
+                     INNER JOIN PermisoRelacion pr ON p.Id = pr.HijoId 
+                     WHERE pr.PadreId = @idPermiso";
+
+            using (SqlCommand cmd = new SqlCommand(query, cn))
+            {
+                cmd.Parameters.AddWithValue("@idPermiso", idPermiso);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        bool esGrupo = Convert.ToBoolean(reader["EsGrupo"]);
+
+                        ComponentePermiso permiso;
+                        if (esGrupo)
+                            permiso = new GrupoPermisos { Id = Convert.ToInt32(reader["Id"]), Nombre = reader["Nombre"].ToString() };
+                        else
+                            permiso = new PermisoSimple { Id = Convert.ToInt32(reader["Id"]), Nombre = reader["Nombre"].ToString() };
+
+                        permisos.Add(permiso);
+                    }
+                }
+            }
+            cn.Close();
+            return permisos;
+        }
+
+        public void ActualizarNombreGrupo(int grupoId, string nombre)
+        {
+            Conexion conexion = new Conexion();
+            SqlConnection cn = conexion.ObtenerConexion();
+            cn.Open();
+
+            string query = "UPDATE Permiso SET Nombre = @Nombre WHERE Id = @Id";
+            using (SqlCommand cmd = new SqlCommand(query, cn))
+            {
+                cmd.Parameters.AddWithValue("@Nombre", nombre);
+                cmd.Parameters.AddWithValue("@Id", grupoId);
+                cmd.ExecuteNonQuery();
+            }
+            cn.Close();
+        }
+
+        public void EliminarPermisosDeGrupo(int grupoId)
+        {
+            Conexion conexion = new Conexion();
+            SqlConnection cn = conexion.ObtenerConexion();
+            cn.Open();
+
+            string query = "DELETE FROM PermisoRelacion WHERE PadreId = @PadreId";
+            using (SqlCommand cmd = new SqlCommand(query, cn))
+            {
+                cmd.Parameters.AddWithValue("@PadreId", grupoId);
+                cmd.ExecuteNonQuery();
+            }
+            cn.Close();
+        }
+
+        public void EliminarGrupo(int grupoId)
+        {
+            Conexion conexion = new Conexion();
+            SqlConnection cn = conexion.ObtenerConexion();
+            cn.Open();
+
+            string query = "DELETE FROM Permiso WHERE Id = @Id AND EsGrupo = 1";
+            using (SqlCommand cmd = new SqlCommand(query, cn))
+            {
+                cmd.Parameters.AddWithValue("@Id", grupoId);
+                cmd.ExecuteNonQuery();
+            }
+            cn.Close();
+        }
     }
 }
