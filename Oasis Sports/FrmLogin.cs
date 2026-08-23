@@ -128,37 +128,54 @@ namespace Oasis_Sports
 
             //bllUsuario.InicializarDVs();  //Solo para la primera vez que se usa
 
-            if (!bLL_DV.VerificarIntegridad())
-            {
-                DialogResult resultado = MessageBox.Show(
-                    "Se detectó una alteración en los datos.\n¿Desea recalcular los dígitos verificadores?",
-                    "Error de integridad",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning);
-
-                if (resultado == DialogResult.Yes)
-                {
-                    bLL_DV.InicializarDVs();
-
-                    MessageBox.Show(
-                        "Dígitos verificadores recalculados correctamente.",
-                        "Éxito",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                }
-                else
-                {
-                    return; 
-                }
-            }
 
             try
             {
                 Usuario user = bllUsuario.ValidarUsuario(textBox1.Text, textBox2.Text);
 
-                SessionManager.GetInstance().Login(user);
+                
 
                 BLL_Evento bllEvento = new BLL_Evento();
+                BLL_Permisos bllPermisos = new BLL_Permisos();
+
+
+                if (!bLL_DV.VerificarIntegridad() && bllPermisos.EsAdministrador(user.Id))
+                {
+                    DialogResult resultado = MessageBox.Show(
+                        "Se detectó una alteración en los datos.\n¿Desea recalcular los dígitos verificadores?",
+                        "Error de integridad",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
+
+                    if (resultado == DialogResult.Yes)
+                    {
+
+                        bLL_DV.InicializarDVs();
+
+                        MessageBox.Show(
+                            "Dígitos verificadores recalculados correctamente.",
+                            "Éxito",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                    }
+
+                    else
+                    {
+                        return;
+                    }
+                }
+
+                else if (!bLL_DV.VerificarIntegridad() && !bllPermisos.EsAdministrador(user.Id))
+                {
+                    MessageBox.Show(
+                           "No se puede ingresar al sistema en estos momentos. Contacte a un administrador.",
+                           "Sin autorización",
+                           MessageBoxButtons.OK,
+                           MessageBoxIcon.Error);
+                    return;
+                }
+
+                SessionManager.GetInstance().Login(user);
 
                 bllEvento.RegistrarEvento(new Evento()
                 {

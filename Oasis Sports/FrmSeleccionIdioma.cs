@@ -13,7 +13,7 @@ using Servicios;
 
 namespace Oasis_Sports
 {
-    public partial class FrmSeleccionIdioma : Form
+    public partial class FrmSeleccionIdioma : Form, IObserverIdioma
     {
         BLL_Idioma bllIdioma = new BLL_Idioma();
         BLL_Traduccion bllTraduccion = new BLL_Traduccion();
@@ -21,14 +21,25 @@ namespace Oasis_Sports
         public FrmSeleccionIdioma()
         {
             InitializeComponent();
+            LanguageManager.GetInstance().Agregar(this);
         }
 
         private void FrmSeleccionIdioma_Load(object sender, EventArgs e)
         {
+            RegistrarClaves();
+            LanguageManager.GetInstance().TraducirControles(this);
             cmbIdiomas.DataSource = bllIdioma.Listar();
             cmbIdiomas.DisplayMember = "Nombre";
             cmbIdiomas.ValueMember = "IdIdioma";
             //RegistrarClaves();
+        }
+
+        public void ActualizarIdioma()
+        {
+            if (this.InvokeRequired)
+                this.Invoke(new Action(() => LanguageManager.GetInstance().TraducirControles(this)));
+            else
+                LanguageManager.GetInstance().TraducirControles(this);
         }
 
         private void RegistrarClaves()

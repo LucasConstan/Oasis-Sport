@@ -118,7 +118,7 @@
             btnCrearGP.Name = "btnCrearGP";
             btnCrearGP.Size = new Size(192, 54);
             btnCrearGP.TabIndex = 8;
-            btnCrearGP.Text = "CREAR GRUPO DE PERMISOS";
+            btnCrearGP.Text = "GRUPO DE PERMISOS";
             btnCrearGP.UseVisualStyleBackColor = true;
             btnCrearGP.Click += button1_Click_1;
             // 

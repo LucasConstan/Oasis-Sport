@@ -23,6 +23,8 @@ namespace Oasis_Sports
        
         private void FrmIdiomas_Load(object sender, EventArgs e)
         {
+            RegistrarClaves();
+            LanguageManager.GetInstance().TraducirControles(this);
             CargarIdiomas();
             //RegistrarClaves();
             CargarClaves();

@@ -14,8 +14,9 @@ namespace DAL
          "Encrypt=True;" +
          "TrustServerCertificate=True;";
 
-        public static string cadena2 = "Data Source=localhost\010-342-03-1091\\Navegador;Initial Catalog = OasisSports;Integrated Security = True;Persist Security Info=False " +
-            "Pooling=False; MultipleActiveResultSets=False; Encrypt=True;TrustServerCertificate=True;Command Timeout = 0;";
+        public static string cadena2 = "Data Source=.;Initial Catalog=OasisSports;" +
+            "Integrated Security=True;Persist Security Info=False;Pooling=False;Multiple Active Result Sets=False;Encrypt=True;" +
+            "Trust Server Certificate=True;Command Timeout=0";
 
         public static string cadena3 =
         "Data Source=.;" +
@@ -29,7 +30,7 @@ namespace DAL
        
         public Conexion()
         {
-            conexion = new SqlConnection(cadena3);
+            conexion = new SqlConnection(cadena1);
         }
 
        

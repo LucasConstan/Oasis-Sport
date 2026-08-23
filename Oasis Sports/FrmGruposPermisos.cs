@@ -172,6 +172,18 @@ namespace Oasis_Sports
             }
             else
             {
+                List<ComponentePermiso> existentes = permisoBLL.ObtenerTodos();
+
+                if (permisoBLL.ExisteGrupoConNombre(nombreGrupo, existentes))
+                {
+                    MessageBox.Show(
+                        $"Ya existe un grupo con el nombre '{nombreGrupo}'.",
+                        "Nombre duplicado",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+
                 int grupoId = permisoBLL.CrearGrupoPermiso(nombreGrupo);
                 foreach (ComponentePermiso permiso in permisosSeleccionados)
                     permisoBLL.AgregarPermisoAGrupo(grupoId, permiso.Id);
@@ -232,6 +244,16 @@ namespace Oasis_Sports
             GrupoPermisos grupo = lstPermisosDisponibles.SelectedItem as GrupoPermisos;
             if (grupo == null) return;
 
+            if (permisoBLL.GrupoPoseeUsuarios(grupo.Id))
+            {
+                MessageBox.Show(
+                    $"No se puede eliminar el grupo '{grupo.Nombre}' porque hay usuarios que lo tienen asignado.",
+                    "Operación no permitida",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
             DialogResult confirmacion = MessageBox.Show(
                 $"¿Estás seguro que querés eliminar el grupo '{grupo.Nombre}'?",
                 "Confirmar eliminación",
@@ -239,6 +261,15 @@ namespace Oasis_Sports
                 MessageBoxIcon.Warning);
 
             if (confirmacion != DialogResult.Yes) return;
+
+            if (grupo.Id == 6) 
+            {
+                MessageBox.Show(
+                    "No se puede eliminar el perfil Admin","Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
 
             permisoBLL.EliminarGrupoPermiso(grupo.Id);
             MessageBox.Show("Grupo eliminado correctamente.");

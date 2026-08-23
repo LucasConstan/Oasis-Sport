@@ -105,6 +105,23 @@ namespace BLL
             permisoDAL.EliminarGrupo(grupoId);           
         }
 
+        public bool GrupoPoseeUsuarios(int grupoId)
+        {
+            return permisoDAL.GrupoPoseeUsuarios(grupoId);
+        }
+
+        public bool EsAdministrador(int usuarioId)
+        {
+            return permisoDAL.EsAdministrador(usuarioId);
+        }
+
+        public bool ExisteGrupoConNombre(string nombre, List<ComponentePermiso> permisosExistentes)
+        {
+            return permisosExistentes
+                .OfType<GrupoPermisos>()
+                .Any(g => g.Nombre.Equals(nombre, StringComparison.OrdinalIgnoreCase));
+        }
+
 
     }
 }

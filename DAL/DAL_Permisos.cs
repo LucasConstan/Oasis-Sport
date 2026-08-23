@@ -334,5 +334,36 @@ namespace DAL
             }
             cn.Close();
         }
+
+        public bool GrupoPoseeUsuarios(int grupoId)
+        {
+            Conexion conexion = new Conexion();
+            SqlConnection cn = conexion.ObtenerConexion();
+            cn.Open();
+
+            string query = "SELECT COUNT(*) FROM UsuarioPermiso WHERE PermisoId = @PermisoId";
+            using (SqlCommand cmd = new SqlCommand(query, cn))
+            {
+                cmd.Parameters.AddWithValue("@PermisoId", grupoId);
+                int cantidad = (int)cmd.ExecuteScalar();
+                return cantidad > 0;
+            }
+        }
+
+        public bool EsAdministrador(int usuarioId)
+        {
+            Conexion conexion = new Conexion();
+            SqlConnection cn = conexion.ObtenerConexion();
+            cn.Open();
+
+            string query = @"SELECT COUNT(*) FROM UsuarioPermiso 
+                     WHERE UsuarioId = @UsuarioId AND PermisoId = 6";
+
+            using (SqlCommand cmd = new SqlCommand(query, cn))
+            {
+                cmd.Parameters.AddWithValue("@UsuarioId", usuarioId);
+                return (int)cmd.ExecuteScalar() > 0;
+            }
+        }
     }
 }
